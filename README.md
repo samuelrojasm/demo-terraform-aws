@@ -1,6 +1,9 @@
 # Terraform para AWS
 - Terraform es una herramienta de Infraestructura como Código (IaC) que permite definir, gestionar y automatizar la infraestructura a través de archivos de configuración declarativa. 
 - Terraform utiliza un lenguaje llamado HCL (HashiCorp Configuration Language) para definir la infraestructura.
+- Contiene un conjunto de configuraciones de **Terraform** para gestionar infraestructura en **AWS**.
+- Contiene ejemplos, módulos y configuraciones de Terraform para aprovisionar infraestructura en Amazon Web Services (AWS). 
+- Diseñado para facilitar la creación de recursos como VPCs, EC2, S3, IAM, entre otros, de manera modular y reutilizable.
 
 ## Requisitos
 ### 1. Instalar AWS CLI
@@ -265,6 +268,8 @@ output "ami_architecture" {
 ```
 
 ## Referencias
+- [Terraform](https://www.terraform.io/downloads.html)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Lifecycle management of AWS resources](https://registry.terraform.io/providers/hashicorp/aws/latest)
 - [Resource: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/instance)
