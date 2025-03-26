@@ -1,4 +1,4 @@
-# Demo: VPC (Virtual Private Cloud)
+## Demo: VPC (Virtual Private Cloud)
 
-## Objetivo
+### Objetivo
 - Este ejemplo provisiona una VPC con tres subnets
