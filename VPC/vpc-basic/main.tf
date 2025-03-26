@@ -2,7 +2,7 @@
 
 # Generar nombres dinámicos
 locals {
-  vpc_name = "vpc-${var.purpose}-${var.location}-001"
+  vpc_name = "vpc-${var.purpose}-${var.aws_region}-001"
 }
 
 resource "aws_vpc" "vpc" {

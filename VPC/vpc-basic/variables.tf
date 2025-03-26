@@ -1,7 +1,7 @@
 # Difinción de variables
 
-variable "location" {
-  description = "Ubicación de la VPC"
+variable "aws_region" {
+  description = "La región donde se desplegarán los recursos de AWS"
   type        = string
 }
 
@@ -16,6 +16,9 @@ variable "purpose" {
 }
 
 # Nombres generados dinámicamente
-
-
+variable "vpc_name" {
+  description = "Datos para el Tag Name"
+  type        = string
+  default     = ""
+}
 
