@@ -1,4 +1,4 @@
-# Definici√≥n de valores de salida,
+# Definición de valores de salida,
 # para ver los detalles de la creación
 
 output "vpc_info" {
@@ -6,16 +6,17 @@ output "vpc_info" {
   value = {
     id            = aws_vpc.vpc.id
     cidr_block    = aws_vpc.vpc.cidr_block
-    default_vpc   = aws_vpc.vpc.default
     arn           = aws_vpc.vpc.arn
     tenancy       = aws_vpc.vpc.instance_tenancy
     dns_support   = aws_vpc.vpc.enable_dns_support
     dns_hostnames = aws_vpc.vpc.enable_dns_hostnames
     name          = aws_vpc.vpc.tags.Name
+    default_sg    = aws_vpc.vpc.default_security_group_id
+    default_nacl  = aws_vpc.vpc.default_network_acl_id
   }
 }
 
-output "detalles_private_subnet" {
+output "detalles_private_subnets" {
   description = "Detalles de las subnets privadas creadas"
   value = [
     for subnet in aws_subnet.private_subnets : {
