@@ -15,10 +15,14 @@ variable "purpose" {
   type        = string
 }
 
-# Nombres generados dinámicamente
-variable "vpc_name" {
-  description = "Datos para el Tag Name"
+# Datos de la VPC
+variable "cidr_block" {
+  description = "Rango de direcciones IP para la VPC"
   type        = string
-  default     = ""
 }
 
+variable "private_subnet_cidrs" {
+  type        = list(string)
+  description = "Valores CIDR de la Private Subnet"
+  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+}
