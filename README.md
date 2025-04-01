@@ -10,6 +10,7 @@
   - [Creación de una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
   - [Creación de múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
 ### AWS VPC
+- [Crea una VPC con tres Subnets](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-basic)
 
 ## Requisitos
 ### 1. Instalar AWS CLI
