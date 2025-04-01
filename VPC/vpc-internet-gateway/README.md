@@ -1,4 +1,4 @@
-## 🛠️ Demo: VPC (Virtual Private Cloud)
+## 🛠️ Demo: VPC (Virtual Private Cloud) con Internet Gateway
 
 ## 📂 Objetivo
 Este ejemplo provisiona una VPC con los siguientes componentes:
