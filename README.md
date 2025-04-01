@@ -1,6 +1,13 @@
 # 🛠️ Terraform para AWS
-![AWS](https://img.shields.io/badge/AWS-SDK-orange?logo=amazonaws&logoColor=white)
-![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&link=)
+![AWS](https://img.shields.io/badge/Cloud-AWS-232F3E?logo=amazonaws&logoColor=white)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)
+![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)
+
+![Terraform](https://img.shields.io/badge/Terraform-v1.7.2-623CE4?logo=terraform)
+![Build](https://github.com/tu-usuario/tu-repo/workflows/Terraform/badge.svg)
+![Docs](https://img.shields.io/badge/Docs-Terraform%20Docs-blue)
+![Security](https://img.shields.io/badge/Security-tfsec-success?logo=terraform)
+
 
 
 - Terraform es una herramienta de Infraestructura como Código (IaC) que permite definir, gestionar y automatizar la infraestructura a través de archivos de configuración declarativa. 
