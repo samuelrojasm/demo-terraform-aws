@@ -1,6 +1,6 @@
-## Demo: VPC (Virtual Private Cloud)
+## 🛠️ Demo: VPC (Virtual Private Cloud)
 
-## Objetivo
+## 📂 Objetivo
 Este ejemplo provisiona una VPC con los siguientes componentes:
 - 1 **`Internet Gateway`**
 - 3 **`Public Subnets`**, una en cada AZ
@@ -9,8 +9,10 @@ Este ejemplo provisiona una VPC con los siguientes componentes:
 
 ---
 
-## Resultado (Outcome)
+## 🚀 Resultado (Outcome)
 ### Resource map (Public Subnets)
 ![Public Subnet](assets/imagenes/public_subnets.png)
 ### Resource map (Private Subnets)
 ![Private Subnet](assets/imagenes/private_subnets.png)
+
+---
