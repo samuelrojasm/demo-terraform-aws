@@ -10,6 +10,8 @@ Este ejemplo provisiona una VPC con los siguientes componentes:
 ---
 
 ## 🚀 Resultado (Outcome)
+### Terraform apply
+![Private Subnet](assets/imagenes/terraform_apply.png)
 ### Resource map (Public Subnets)
 ![Public Subnet](assets/imagenes/public_subnets.png)
 ### Resource map (Private Subnets)
