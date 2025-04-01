@@ -6,8 +6,10 @@
 - Diseñado para facilitar la creación de recursos como VPCs, EC2, S3, IAM, entre otros, de manera modular y reutilizable.
 
 ## Contenido
-- [creación de una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
-- [Creación de múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
+### AWS EC2
+  - [Creación de una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
+  - [Creación de múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
+### AWS VPC
 
 ## Requisitos
 ### 1. Instalar AWS CLI
