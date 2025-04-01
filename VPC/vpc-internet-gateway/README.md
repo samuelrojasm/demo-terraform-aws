@@ -10,7 +10,7 @@ Este ejemplo provisiona una VPC con los siguientes componentes:
 
 ## Resultado (Outcome)
 
-![Public Subnet](/assets/imagenes/public_subnets.png)
+![Public Subnet](assets/imagenes/public_subnets.png)
 
 
-![Private Subnet](/assets/imagenes/private_subnets.png)
+![Private Subnet](assets/imagenes/private_subnets.png)
