@@ -37,7 +37,7 @@ En mi caso uso un usuario AWS SSO.
     aws sso logout
     ```
 
-## Pasos básicos de Terraform
+## 👣 Pasos básicos de Terraform
 Pasos básicos para usar Terraform de manera eficiente en cualquier proyecto.
 ### 1. Instalar Terraform
 #### Instalación en macOS:
@@ -159,7 +159,7 @@ terraform {
 - Es una buena práctica versionar los archivos de configuración de Terraform en un sistema de control de versiones como Git. 
 - Esto permite que puedas realizar un seguimiento de los cambios a lo largo del tiempo y facilitar la colaboración en equipos.
 
-## Comandos Básicos de Terraform:
+## 📋 Comandos Básicos de Terraform:
 | Comando                    | Descripción                                                 |
 |----------------------------|-------------------------------------------------------------|
 | **`terraform init`**       | Inicializa el proyecto y descarga los proveedores.          |
@@ -169,7 +169,7 @@ terraform {
 | **`terraform state list`** | Muestra una lista de recursos en el estado actual.          |
 | **`terraform destroy`**    | Elimina todos los recursos gestionados por Terraform.       |
 
-## Buenas Prácticas:
+## ✔️ Buenas Prácticas:
 1. **Mantener los archivos de estado seguros**: Los archivos de estado (**`terraform.tfstate`**) contienen información sensible (como credenciales o configuraciones internas). Usa almacenamiento remoto y habilita el cifrado.
 2. **Uso de módulos**: Organizar el código de infraestructura en módulos para reutilizar configuraciones y hacer el código más modular.
 3. **Revisar siempre el **`plan`** antes de aplicar cambios**: Usar siempre **`terraform plan`** antes de **`terraform apply`** para evitar cambios no deseados.
