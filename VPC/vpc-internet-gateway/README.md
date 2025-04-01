@@ -6,11 +6,11 @@ Este ejemplo provisiona una VPC con los siguientes componentes:
 - 3 **`Public Subnets`**, una en cada AZ
 - 3 **`Private Subnets`**, una en cada AZ
 - Configuración de **`Route Table`** (principal y adicional)
+
 ---
 
 ## Resultado (Outcome)
-
+### Resource map (Public Subnets)
 ![Public Subnet](assets/imagenes/public_subnets.png)
-
-
+### Resource map (Private Subnets)
 ![Private Subnet](assets/imagenes/private_subnets.png)
