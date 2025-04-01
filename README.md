@@ -2,13 +2,7 @@
 ![AWS](https://img.shields.io/badge/Cloud-AWS-232F3E?logo=amazonaws&logoColor=white)
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)
 ![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)
-
-![Terraform](https://img.shields.io/badge/Terraform-v1.7.2-623CE4?logo=terraform)
-![Build](https://github.com/tu-usuario/tu-repo/workflows/Terraform/badge.svg)
-![Docs](https://img.shields.io/badge/Docs-Terraform%20Docs-blue)
-![Security](https://img.shields.io/badge/Security-tfsec-success?logo=terraform)
-
-
+![terraform fmt](https://img.shields.io/badge/Style-terraform%20fmt-brightgreen)
 
 - Terraform es una herramienta de Infraestructura como Código (IaC) que permite definir, gestionar y automatizar la infraestructura a través de archivos de configuración declarativa. 
 - Terraform utiliza un lenguaje llamado HCL (HashiCorp Configuration Language) para definir la infraestructura.
