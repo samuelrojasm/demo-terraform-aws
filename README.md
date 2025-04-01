@@ -9,14 +9,14 @@
 - Contiene ejemplos, módulos y configuraciones de Terraform para aprovisionar infraestructura en Amazon Web Services (AWS). 
 - Diseñado para facilitar la creación de recursos como VPCs, EC2, S3, IAM, entre otros, de manera modular y reutilizable.
 
-## Contenido
+## 📂 Contenido
 ### AWS EC2
   - [Creación de una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
   - [Creación de múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
 ### AWS VPC
 - [Crea una VPC con tres Subnets](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-basic)
 
-## Requisitos
+## 🚀 Requisitos
 ### 1. Instalar AWS CLI
 - Instalación en macOS:
     ```
@@ -175,7 +175,7 @@ terraform {
 3. **Revisar siempre el **`plan`** antes de aplicar cambios**: Usar siempre **`terraform plan`** antes de **`terraform apply`** para evitar cambios no deseados.
 4. **Automatización**: Integrar Terraform en un pipeline de CI/CD para automatizar la provisión de infraestructura.
 
-## Estructura del proyecto
+## ⚙️ Estructura del proyecto
 ```bash
 ├── proyecto1/
 │   ├── main.tf
@@ -209,7 +209,7 @@ terraform {
 | **`provider.tf`**          | Defines the versions used for the providers and terraform.                          |
 | **`README.md`**            | Documentation on how to use the module, including descriptions of input variables and outputs.  |
 
-## Data Source en Terraform
+## 📖 Data Source en Terraform
 - En Terraform, un ***Data Source*** se usa para leer datos externos o recursos existentes que ya están creados fuera de Terraform, o para consultar información dinámica de tu infraestructura que no necesariamente es gestionada directamente por Terraform.
 - Un ***Data Source*** permite obtener información de recursos ya existentes para utilizarla en la creación o configuración de nuevos recursos en tu infraestructura.
 - Cuando Terraform ejecuta la infraestructura, lo primero que hace es obtener la información del ***Data Source***. Terraform realiza la consulta a la API del proveedor (en este caso, AWS) utilizando los parámetros definidos en el bloque del Data Source. 
@@ -278,7 +278,7 @@ output "ami_architecture" {
 }
 ```
 
-## Referencias
+## 📚 Referencias
 - [Terraform](https://www.terraform.io/downloads.html)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
