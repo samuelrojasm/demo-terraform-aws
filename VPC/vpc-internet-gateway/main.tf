@@ -49,7 +49,7 @@ resource "aws_internet_gateway" "igw" {
 # Segunda route table, es una mejor práctica para
 # habilitar el tráfico desde Internet para acceder
 # a las Public Subnets
-resource "aws_route_table" "second_rt" {
+resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc_igw.id
 
   route {
@@ -57,14 +57,14 @@ resource "aws_route_table" "second_rt" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "rt-${var.purpose}"
+    Name = "rt-public-${var.purpose}"
   }
 }
 
 # Asociar de manera explicita, todas las  public subnets con
 # la segunda route table, para habilitar el acceso a Internet en estas.
-resource "aws_route_table_association" "public_subnet_asso" {
+resource "aws_route_table_association" "public_subnet_association" {
   count          = length(var.public_subnet_cidrs)
   subnet_id      = element(aws_subnet.public_subnets[*].id, count.index)
-  route_table_id = aws_route_table.second_rt.id
+  route_table_id = aws_route_table.public_route_table.id
 }
