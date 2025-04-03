@@ -14,3 +14,8 @@ variable "cidr_block" {
   description = "Rango de direcciones IP para la VPC"
   type        = string
 }
+
+variable "security_groups" {
+  type    = list(string)
+  default = ["sg-database", "sg-web"] # IDs de SGs existentes
+}

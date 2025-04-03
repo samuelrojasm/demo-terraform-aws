@@ -2,7 +2,8 @@
 
 ## 🎯 Objetivo (Target)
 Este ejemplo provisiona una VPC con los siguientes componentes:
-- 3 **`Security Groups`**
+- 2 **`Security Groups`**
+- Uno de los security groups aplica control de acceso basado en la referencia de un SG en lugar de direcciones IP estáticas.
 
 ---
 

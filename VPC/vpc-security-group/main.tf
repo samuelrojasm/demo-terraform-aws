@@ -16,45 +16,25 @@ resource "aws_vpc" "vpc_sg" {
 }
 
 # Security Group asociado a la VPC personalizada
-resource "aws_security_group" "sg-ec2" {
-  name        = "ec2-security-group"
-  description = "Reglas de seguridad para EC2"
+resource "aws_security_group" "sg-web" {
+  name        = "security_group_web"
+  description = "Reglas de seguridad para Web Servers"
   vpc_id      = aws_vpc.vpc_sg.id # Aquí se define la VPC donde estará el SG
 
-  # Reglas de salida (permitir todo el tráfico)
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"] # allows all outbound traffic to any destination IP address
-    description = "Allow all outbound traffic"
-  }
-
   tags = {
-    Name = "sg-ec2-${var.purpose}"
+    Name = "sg-web-${var.purpose}"
   }
 }
 
 # Security Group asociado a la VPC personalizada
-resource "aws_security_group" "sg-db" {
-  name        = "db-security-group"
-  description = "Reglas de seguridad para DataBase"
+resource "aws_security_group" "sg-database" {
+  name        = "security_group_database"
+  description = "Reglas de seguridad para Base de Datos"
   vpc_id      = aws_vpc.vpc_sg.id # Aquí se define la VPC donde estará el SG
 
-  # Reglas de salida (permitir todo el tráfico)
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"] # allows all outbound traffic to any destination IP address
-    description = "Allow all outbound traffic"
-  }
-
   tags = {
-    Name = "sg-db-${var.purpose}"
+    Name = "sg-database-${var.purpose}"
   }
 }
-
-
 
 
