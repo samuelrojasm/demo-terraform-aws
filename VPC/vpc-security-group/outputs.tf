@@ -16,4 +16,3 @@ output "security_groups" {
     }
   }
 }
-

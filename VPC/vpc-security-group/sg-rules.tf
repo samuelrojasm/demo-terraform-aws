@@ -2,13 +2,13 @@
 
 # Reglas de salida (permitir todo el tráfico)
 resource "aws_security_group_rule" "allow_all_egress" {
-  for_each          = toset(var.security_groups)
+  for_each          = local.security_groups # Usamos el mapa local de IDs de SGs
   type              = "egress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"] # allows all outbound traffic to any destination IP address
-  security_group_id = each.value
+  security_group_id = each.value    # Aquí cada valor es un ID único de SG
   description       = "Allow all outbound traffic"
 }
 

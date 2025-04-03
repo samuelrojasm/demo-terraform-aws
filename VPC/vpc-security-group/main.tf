@@ -4,6 +4,10 @@
 # Valor temporal calculado en tiempo de ejecuci√≥n
 locals {
   vpc_name = "vpc-${var.purpose}-${var.aws_region}-01"
+  security_groups = {
+    "web" = aws_security_group.sg-web.id
+    "db"  = aws_security_group.sg-database.id
+  }
 }
 
 # Definición de la VPC
