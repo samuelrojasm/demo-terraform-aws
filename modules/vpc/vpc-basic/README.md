@@ -24,7 +24,7 @@ module "vpc" {
 ---
 
 ##  📄 Uso con archivo terraform.tfvars
-Es posible definir todas las variables en un archivo `terraform.tfvars` para personalizar sin modificar el código del módulo:
+- Es posible definir todas las variables en un archivo `terraform.tfvars` para personalizar sin modificar el código del módulo:
 
 ```hcl
 # terraform.tfvars
@@ -38,14 +38,14 @@ tags = {
 }
 ```
 
-Terraform detectará este archivo automáticamente:
+- Terraform detectará este archivo automáticamente:
 
   ```bash
   terraform init
   terraform apply
   ```
 
-También se puede usar otro nombre para el archivo de variables:
+- También se puede usar otro nombre para el archivo de variables:
 
 ```bash
 terraform apply -var-file="custom-values.tfvars"
@@ -58,7 +58,7 @@ terraform apply -var-file="custom-values.tfvars"
 - `public_subnet_ids`: IDs de subnets públicas
 
 ##  🔧 Variables
-Es posible sobrescribir cualquier variable si es necesario. Consultar `variables.tf`.
+- Es posible sobrescribir cualquier variable si es necesario. Consultar **`variables.tf`**
 
 ## ✅ Requisitos
 - AWS provider configurado
