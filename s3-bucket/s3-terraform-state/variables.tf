@@ -17,3 +17,9 @@ variable "service" {
   description = "Nombre del servicio"
   type        = string
 }
+
+variable "prefix_bucket_name" {
+  description = "Nombre del Bucket"
+  type        = string
+}
+
