@@ -26,17 +26,17 @@ module "vpc" {
 ##  📄 Uso con archivo terraform.tfvars
 - Es posible definir todas las variables en un archivo `terraform.tfvars` para personalizar sin modificar el código del módulo:
 
-```hcl
-# terraform.tfvars
-name               = "custom-vpc"
-vpc_cidr           = "10.1.0.0/16"
-public_subnets     = ["10.1.1.0/24", "10.1.2.0/24"]
-availability_zones = ["us-east-1a", "us-east-1b"]
-tags = {
-  Environment = "dev"
-  Owner       = "network-team"
-}
-```
+  ```hcl
+  # terraform.tfvars
+  name               = "custom-vpc"
+  vpc_cidr           = "10.1.0.0/16"
+  public_subnets     = ["10.1.1.0/24", "10.1.2.0/24"]
+  availability_zones = ["us-east-1a", "us-east-1b"]
+  tags = {
+    Environment = "dev"
+    Owner       = "network-team"
+  }
+  ```
 
 - Terraform detectará este archivo automáticamente:
 
@@ -47,9 +47,9 @@ tags = {
 
 - También se puede usar otro nombre para el archivo de variables:
 
-```bash
-terraform apply -var-file="custom-values.tfvars"
-```
+  ```bash
+  terraform apply -var-file="custom-values.tfvars"
+  ```
 
 ---
 
