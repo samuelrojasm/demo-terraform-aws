@@ -58,7 +58,8 @@ module "vpc" {
 - `public_subnet_ids`: IDs de subnets públicas
 
 ##  🔧 Variables
-- Es posible sobrescribir cualquier variable si es necesario. Consultar **`variables.tf`**
+- Es posible sobrescribir cualquier variable si es necesario. 
+  - Consultar **`variables.tf`**
 
 ## ✅ Requisitos
 - AWS provider configurado
