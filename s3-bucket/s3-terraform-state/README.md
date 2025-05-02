@@ -17,3 +17,25 @@
 <p align="center">
 <img src="assets/imagenes/blob_outputs.png" alt="Terraform apply" width="60%">
 </p>
+
+### Terraform state list
+<p align="center">
+<img src="assets/imagenes/blob_state_list.png" alt="Terraform State" width="50%">
+</p>
+
+### Storage Account de Azure Blob Storage
+ <p align="center">
+    <img src="assets/imagenes/blob_stotage_account.png" alt="Storage Account" width="70%">
+    </p>
+
+### Container remoto pare el estado de Terraform en Azure Blob Storage
+ <p align="center">
+    <img src="assets/imagenes/blob_container.png" alt="Container" width="70%">
+    </p>
+
+---
+
+## 📚 Referencias
+
+
+---
