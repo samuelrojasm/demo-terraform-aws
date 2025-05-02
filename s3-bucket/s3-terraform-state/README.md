@@ -9,33 +9,39 @@
 
 ## 🧱 Recursos creados
 - Crear la infraestructura inicial necesaria para almacenar el estado remoto (backend) de Terraform en AWS, incluyendo:
-    - Un bucket S3 con versionado y cifrado activados (almacenar el archivo **`terraform.tfstate`**.)
+    - Un bucket S3 (almacenar el archivo **`terraform.tfstate`**)
+    - Habilita versionado
+    - Habilita cifrado
+    - Bloquea el uso de ACLs (BucketOwnerEnforced)
 
 ## 🚀 Resultado (Outcome)
 ### Terraform apply
-- El output incluirá el nombre del **storage_account** y del **container**, necesarios para configurar el backend remoto en otros proyectos.
+- El output incluirá el nombre del **S3 Bucket** para configurar el backend remoto en otros proyectos.
 <p align="center">
-<img src="assets/imagenes/blob_outputs.png" alt="Terraform apply" width="60%">
+<img src="assets/imagenes/s3_tf_state_apply.png" alt="Terraform apply" width="60%">
 </p>
 
 ### Terraform state list
 <p align="center">
-<img src="assets/imagenes/blob_state_list.png" alt="Terraform State" width="50%">
+<img src="assets/imagenes/s3_tf_state_resource_list.png" alt="Terraform State" width="50%">
 </p>
 
-### Storage Account de Azure Blob Storage
+### Lista el Bucket creado en S3 con AWS CLI
  <p align="center">
-    <img src="assets/imagenes/blob_stotage_account.png" alt="Storage Account" width="70%">
+    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="70%">
     </p>
 
-### Container remoto pare el estado de Terraform en Azure Blob Storage
+### Lista Bucket en la consola 
  <p align="center">
-    <img src="assets/imagenes/blob_container.png" alt="Container" width="70%">
+    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="70%">
     </p>
 
 ---
 
 ## 📚 Referencias
-
+- [Resource: aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)
+- [Resource: aws_s3_bucket_versioning](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning)
+- [Resource: aws_s3_bucket_server_side_encryption_configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration)
+- [Resource: aws_s3_bucket_public_access_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block)
 
 ---
