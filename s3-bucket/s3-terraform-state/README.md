@@ -28,7 +28,7 @@
 
 ### Lista el Bucket creado en S3 con AWS CLI
  <p align="center">
-    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="50%">
+    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="80%">
     </p>
 
 ### Lista Bucket en la consola 
