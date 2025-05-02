@@ -14,6 +14,7 @@ terraform {
     }
   }
 }
+
 # Configuración del proveedor AWS
 provider "aws" {
   region  = var.aws_region # Región de AWS donde se crean los recursos
