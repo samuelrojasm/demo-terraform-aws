@@ -33,7 +33,7 @@
 
 ### Lista Bucket en la consola 
  <p align="center">
-    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="80%">
+    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="90%">
     </p>
 
 ---
