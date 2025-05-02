@@ -18,22 +18,22 @@
 ### Terraform apply
 - El output incluirá el nombre del **S3 Bucket** para configurar el backend remoto en otros proyectos.
 <p align="center">
-<img src="assets/imagenes/s3_tf_state_apply.png" alt="Terraform apply" width="60%">
+<img src="assets/imagenes/s3_tf_state_apply.png" alt="Terraform apply" width="80%">
 </p>
 
 ### Terraform state list
 <p align="center">
-<img src="assets/imagenes/s3_tf_state_resource_list.png" alt="Terraform State" width="50%">
+<img src="assets/imagenes/s3_tf_state_resource_list.png" alt="Terraform State" width="80%">
 </p>
 
 ### Lista el Bucket creado en S3 con AWS CLI
  <p align="center">
-    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="70%">
+    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="50%">
     </p>
 
 ### Lista Bucket en la consola 
  <p align="center">
-    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="70%">
+    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="80%">
     </p>
 
 ---
