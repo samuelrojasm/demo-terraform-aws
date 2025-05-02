@@ -53,8 +53,5 @@
 
 ## 📚 Referencias
 - [Stores the state as a given key in a given bucket on Amazon S3](https://developer.hashicorp.com/terraform/language/backend/s3)
-- []()
-- []()
-- []()
 
 ---
