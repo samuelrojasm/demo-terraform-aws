@@ -17,7 +17,7 @@ Este módulo crea una VPC sencilla en AWS con:
 
 ```hcl
 module "vpc" {
-  source = "github.com/tu-org/terraform-vpc-module"
+  source = "../../modules/vpc/vpc-basic"
 }
 ```
 
@@ -71,8 +71,10 @@ module "vpc" {
     > module.vpc.subnet_ids
     ```
 
+- Ejecución de terraform console
+
     <p align="center">
-    <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="80%">
+    <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="70%">
     </p>
 
 ### Resource map (VPC y Subnets)
