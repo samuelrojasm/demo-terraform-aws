@@ -26,18 +26,58 @@ module "vpc" {
 ##  📄 Uso con archivo terraform.tfvars
 - Es posible definir todas las variables en un archivo `terraform.tfvars` para personalizar sin modificar el código del módulo:
 
-  ```hcl
-  # terraform.tfvars
-  name               = "custom-vpc"
-  vpc_cidr           = "10.1.0.0/16"
-  subnets            = ["10.1.1.0/24", "10.1.2.0/24"]
-  availability_zones = ["us-east-1a", "us-east-1b"]
-  
-  tags = {
-    Environment = "dev"
-    Owner       = "network-team"
-  }
-  ```
+  -  Declarar el módulo en el root (en el main.tf del módulo raíz)
+
+      ```hcl
+      module "vpc" {
+        source    = "../../modules/vpc/vpc-basic"
+        vpc_name  = var.vpc_name  # <- pasar la variable
+        vpc_cidr           = var.vpc_cidr
+        subnets            = var.subnets
+        availability_zones = var.availability_zones
+        tags               = var.tags
+      }
+      ```
+
+- Definir la variable en el root (variables.tf)
+
+      ```hcl
+      variable "vpc_name" {
+          type        = string
+          description = "Nombre de la VPC que se pasa al módulo"
+      }
+
+      variable "vpc_cidr" {
+        type = string
+      }
+
+      variable "subnets" {
+        type = list(string)
+      }
+
+      variable "availability_zones" {
+        type = list(string)
+      }
+
+      variable "tags" {
+        type = map(string)
+      }
+      ```
+
+- Sobrescribir valor en terraform.tfvars
+
+      ```hcl
+      # terraform.tfvars
+      name               = "custom-vpc"
+      vpc_cidr           = "10.1.0.0/16"
+      subnets            = ["10.1.1.0/24", "10.1.2.0/24"]
+      availability_zones = ["us-east-1a", "us-east-1b"]
+      
+      tags = {
+        Environment = "dev"
+        Owner       = "network-team"
+      }
+      ```
 
 - Terraform detectará este archivo automáticamente:
 
