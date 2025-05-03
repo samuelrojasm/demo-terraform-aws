@@ -55,11 +55,13 @@ module "vpc" {
 ---
 
 ## 🚀 Outputs
+### Valores definidos
 - Definidas en el módulo
   - `vpc_id`: ID de la VPC
   - `vpc_name`: Tag con el nombre de la VPC
   - `subnet_ids`: IDs de subnets
 
+### Usar terraform console
 -  Para ver directamente los outputs del módulo (sin exponerlos)
 
     ```bash
@@ -72,6 +74,12 @@ module "vpc" {
     <p align="center">
     <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="80%">
     </p>
+
+### Resource map (VPC y Subnets)
+
+<p align="center">
+<img src="assets/imagenes/vpc_basic_modulo_resource_map.png" alt="Resource map" width="80%">
+</p>
 
 ##  🔧 Variables
 - Es posible sobrescribir cualquier variable si es necesario. 
