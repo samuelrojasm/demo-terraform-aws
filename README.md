@@ -18,7 +18,7 @@
 - [Crea una VPC con Internet Gateway](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-internet-gateway)
 ### Amazon S3 (Amazon Simple Storage Service)
 - [Bucket para backend remoto de Terraform state](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-terraform-state)
-- [Almacenar el estado de Terraform en Amazon S3]()
+- [Almacenar el estado de Terraform en Amazon S3](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-tf-backend-state)
 
 ## 🚀 Requisitos
 ### 1. Instalar AWS CLI
