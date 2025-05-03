@@ -39,7 +39,7 @@ module "vpc" {
       }
       ```
 
-- Definir la variable en el root (variables.tf)
+  - Definir la variable en el root (variables.tf)
 
       ```hcl
       variable "vpc_name" {
@@ -64,7 +64,7 @@ module "vpc" {
       }
       ```
 
-- Sobrescribir valor en terraform.tfvars
+  - Sobrescribir valor en terraform.tfvars
 
       ```hcl
       # terraform.tfvars
