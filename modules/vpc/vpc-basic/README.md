@@ -30,8 +30,9 @@ module "vpc" {
   # terraform.tfvars
   name               = "custom-vpc"
   vpc_cidr           = "10.1.0.0/16"
-  subnets     = ["10.1.1.0/24", "10.1.2.0/24"]
+  subnets            = ["10.1.1.0/24", "10.1.2.0/24"]
   availability_zones = ["us-east-1a", "us-east-1b"]
+  
   tags = {
     Environment = "dev"
     Owner       = "network-team"
@@ -54,8 +55,23 @@ module "vpc" {
 ---
 
 ## 🚀 Outputs
-- `vpc_id`: ID de la VPC
-- `public_subnet_ids`: IDs de subnets públicas
+- Definidas en el módulo
+  - `vpc_id`: ID de la VPC
+  - `vpc_name`: Tag con el nombre de la VPC
+  - `subnet_ids`: IDs de subnets
+
+-  Para ver directamente los outputs del módulo (sin exponerlos)
+
+    ```bash
+    terraform console
+    > module.vpc.vpc_name
+    > module.vpc.vpc_id
+    > module.vpc.subnet_ids
+    ```
+
+    <p align="center">
+    <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="80%">
+    </p>
 
 ##  🔧 Variables
 - Es posible sobrescribir cualquier variable si es necesario. 
