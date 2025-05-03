@@ -57,7 +57,7 @@
 - Se crea el archivo **terraform.tfstate** en el Bucket de Amazon S3
 
  <p align="center">
- <img src="assets/imagenes/s3_tf_backend_state_file.png" alt="Archivo de estado" width="70%">
+ <img src="assets/imagenes/s3_tf_backend_state_file.png" alt="Archivo de estado" width="85%">
  </p>
 
 ---
