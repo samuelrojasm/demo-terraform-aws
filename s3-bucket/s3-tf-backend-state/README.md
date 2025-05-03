@@ -28,6 +28,20 @@
 ---
 
 ## 🚀 Resultado (Outcome)
+### Terraform init 
+- El **backend** de Terraform se configura antes que cualquier proveedor. 
+- Terraform necesita autenticarse para poder acceder al estado remoto en S3.
+- Debido a esto cualquier proyecto donde uses backend "s3" y AWS SSO, se debe exportar el perfil antes de ejecutar **terraform init**, aunque se tenga el profile configurado en el **provider**.
+- En este contexto no lee el **bloque provider**, ni tampoco detecta automáticamente el perfil SSO a menos que lo exportes con:
+
+    ```bash
+    export AWS_PROFILE=tf
+    ```
+
+<p align="center">
+<img src="assets/imagenes/s3_tf_backend_state_init.png" alt="Terraform init" width="80%">
+</p>
+
 ### Terraform apply
 - El output incluirá el nombre del **S3 Bucket** para configurar el backend remoto en otros proyectos.
 <p align="center">
@@ -39,15 +53,12 @@
 <img src="assets/imagenes/s3_tf_state_resource_list.png" alt="Terraform State" width="80%">
 </p>
 
-### Lista el Bucket creado en S3 con AWS CLI
- <p align="center">
-    <img src="assets/imagenes/s3_tf_state_list_bucket.png" alt="Lista Bucket" width="70%">
-    </p>
+### Archivo de estado en Bucket
+- Se crea el archivo **terraform.tfstate** en el Bucket de Amazon S3
 
-### Lista Bucket en la consola 
  <p align="center">
-    <img src="assets/imagenes/s3_tf_state_console_bucket.png" alt="Container" width="90%">
-    </p>
+ <img src="assets/imagenes/s3_tf_backend_state_file.png" alt="Archivo de estado" width="70%">
+ </p>
 
 ---
 
