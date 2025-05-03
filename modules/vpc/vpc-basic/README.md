@@ -74,13 +74,13 @@ module "vpc" {
 - Ejecución de terraform console
 
     <p align="center">
-    <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="70%">
+    <img src="assets/imagenes/vpc_basic_modulo_output.png" alt="Terraform Console" width="60%">
     </p>
 
 ### Resource map (VPC y Subnets)
 
 <p align="center">
-<img src="assets/imagenes/vpc_basic_modulo_resource_map.png" alt="Resource map" width="80%">
+<img src="assets/imagenes/vpc_basic_modulo_resource_map.png" alt="Resource map" width="90%">
 </p>
 
 ##  🔧 Variables
