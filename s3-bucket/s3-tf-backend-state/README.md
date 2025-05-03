@@ -39,14 +39,14 @@
     ```
 
 <p align="center">
-<img src="assets/imagenes/s3_tf_backend_state_init.png" alt="Terraform init" width="80%">
+<img src="assets/imagenes/s3_tf_backend_state_init.png" alt="Terraform init" width="70%">
 </p>
 
 ### Archivo de estado en Bucket
 - Se crea el archivo **terraform.tfstate** en el Bucket de Amazon S3
 
  <p align="center">
- <img src="assets/imagenes/s3_tf_backend_state_file.png" alt="Archivo de estado" width="85%">
+ <img src="assets/imagenes/s3_tf_backend_state_file.png" alt="Archivo de estado" width="90%">
  </p>
 
 ---
