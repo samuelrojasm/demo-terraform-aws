@@ -7,7 +7,7 @@
 ## 🎯 Objetivo (Target)
 Este módulo crea una VPC sencilla en AWS con:
 - CIDR por defecto `10.0.0.0/16`
-- 2 subnets públicas
+- 2 subnets `10.0.1.0/24` `10.0.2.0/24`
 - Zonas `us-east-1a` y `us-east-1b`
 - Soporte DNS habilitado
 
@@ -30,7 +30,7 @@ module "vpc" {
   # terraform.tfvars
   name               = "custom-vpc"
   vpc_cidr           = "10.1.0.0/16"
-  public_subnets     = ["10.1.1.0/24", "10.1.2.0/24"]
+  subnets     = ["10.1.1.0/24", "10.1.2.0/24"]
   availability_zones = ["us-east-1a", "us-east-1b"]
   tags = {
     Environment = "dev"
@@ -69,8 +69,8 @@ module "vpc" {
 
 ## 📚 Referencias
 
-- []()
-- []()
+- [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
+- [Amazon Virtual Private Cloud](https://aws.amazon.com/vpc/)
 - []()
 
 ---
