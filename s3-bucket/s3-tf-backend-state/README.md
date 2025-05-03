@@ -42,17 +42,6 @@
 <img src="assets/imagenes/s3_tf_backend_state_init.png" alt="Terraform init" width="80%">
 </p>
 
-### Terraform apply
-- El output incluirá el nombre del **S3 Bucket** para configurar el backend remoto en otros proyectos.
-<p align="center">
-<img src="assets/imagenes/s3_tf_state_apply.png" alt="Terraform apply" width="80%">
-</p>
-
-### Terraform state list
-<p align="center">
-<img src="assets/imagenes/s3_tf_state_resource_list.png" alt="Terraform State" width="80%">
-</p>
-
 ### Archivo de estado en Bucket
 - Se crea el archivo **terraform.tfstate** en el Bucket de Amazon S3
 
