@@ -25,7 +25,7 @@
 ## 🔐 Thumbprint
 - Ese parámetro utiliza el thumbprint oficial de GitHub
 - Anteriormente era obligatorio, pero a partir de **12/julio/2024** AWS para la comunicación segura con OIDC identity providers (IdPs) usa una biblioteca de **root certificate authorities (CAs)** de confianza.
-- Debido a lo anterior los **OIDC identity providers (IdPs)** usados ampliamente como Git Hub, ya no es obligatorio especificar este parámetro.
+- Debido a lo anterior para los **OIDC identity providers (IdPs)** usados ampliamente como Git Hub, ya no es obligatorio especificar este parámetro.
 - Este cambio es con la finalida de evitar tener que actualizar los **Thumbprint** de los certificados al rotar los certificados SSL/TLS de los **identity providers (IdPs)**
 - La publicación de AWS con el aviso se localiza en la siguiente liga:
     - [AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
@@ -93,12 +93,26 @@
     ```
 
     ```hcl
-    # saved the root certificate as cert.crt
+    # Guardar root certificate como cert.crt
     openssl x509 -in cert.crt -fingerprint -noout | sed -e 's/://g'
     SHA1 Fingerprint=6938FD4D98BAB03FAADB97B34396831E3780AEA1
     
     openssl x509 -in cert.crt -fingerprint -noout | sed -e 's/://g' | tr '[:upper:]' '[:lower:]'
     sha1 fingerprint=6938fd4d98bab03faadb97b34396831e3780aea1
+    ```
+
+    ```hcl
+    # Descripción del comando:
+    # Se conecta al servidor de GitHub OIDC
+    # Extrae el certificado raíz
+    # Calcula su hash SHA-1
+    # Devuelve el fingerprint sin : (que es lo que AWS espera)
+
+    openssl s_client -servername token.actions.githubusercontent.com -showcerts -connect token.actions.githubusercontent.com:443 </dev/null 2>/dev/null \
+        | openssl x509 -fingerprint -noout -sha1 \
+        | sed 's/://g' \
+        | sed 's/SHA1 Fingerprint=//'
+
     ```
 
 ---
@@ -124,18 +138,17 @@
 ## Alternativa
 - Es posible crear el Provider OIDC usando AWS CLI
     ```bash
-    
+    aws iam create-open-id-connect-provider \
+        --url https://token.actions.githubusercontent.com \
+        --client-id-list sts.amazonaws.com \
+        --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1 # Para OIDC de Github no es necesario
     ```
-
 
 ## 📚 Referencias
 - [OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)
 - [Obtain the thumbprint for an OpenID Connect identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html)
 - [About security hardening with OpenID Connect](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 - [GitHub Actions and OIDC Update for Terraform and AWS](https://colinbarker.me.uk/blog/2025-01-12-github-actions-oidc-update/)
-- []()
-- []()
-- []()
 - [create-open-id-connect-provider](https://docs.aws.amazon.com/cli/latest/reference/iam/create-open-id-connect-provider.html)
 - [AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
  - [GitHub Actions – Update on OIDC integration with AWS](https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/)
