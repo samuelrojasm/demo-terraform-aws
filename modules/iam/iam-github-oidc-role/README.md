@@ -5,8 +5,17 @@
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
 ## 🎯 Objetivo (Target)
-Módulo Terraform reutilizable que crea un rol IAM con OIDC para GitHub Actions, con una trust policy segura y una política de permisos definida por el usuario.
-
+- Módulo Terraform reutilizable que crea un rol IAM con OIDC para GitHub Actions, con una **trust policy** segura y una política de permisos definida por el usuario.
+- Usar GitHub OIDC (OpenID Connect) para obtener tokens temporales
+- AWS ahora soporta la federación de identidades mediante OIDC, lo que permite que GitHub Actions se autentique en AWS sin usar llaves estáticas.
+    - Configuración de un **Proveedor de Identidad OIDC** en AWS IAM.
+    - Crear un rol IAM con los permisos necesarios para Terraform.
+    - Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
+    - En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
+- Ventajas:
+    - No se almacenan llaves en GitHub Secrets.
+    - Se usan tokens temporales con duración corta.
+    - Práctica de seguridad recomendada por AWS y GitHub.
 
 ---
 
