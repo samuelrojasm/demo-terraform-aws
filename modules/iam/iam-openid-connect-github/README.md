@@ -4,9 +4,25 @@
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
 ## 🎯 Objetivo (Target)
-
+- Terraform crea el proveedor OIDC de GitHub en una cuenta AWS una única vez.
+- En todos los demás proyectos que creen roles IAM para GitHub Actions, no necesitan volver a crear el OIDC provider. - Para usar el Provider oidc solo se hacen referencia al arn usando el patrón:
+    ```hcl
+    Federated = "arn:aws:iam::<account_id>:oidc-provider/token.actions.githubusercontent.com"
+    ```
+---
 
 ## 🔍 Detalles importantes
 - AWS no permite múltiples instancias del mismo **oidc-provider** por cuenta.
 - El proveedor de OIDC de GitHub es global y compartido: https://token.actions.githubusercontent.com
 - Lo recomendable es que ese proveedor se cree fuera de otros módulos de Terraform, una vez, como parte de la infraestructura base (bootstrap).
+
+---
+
+## Ventajas de separar el bootstrap
+
+## 📚 Referencias
+
+- []()
+- []()
+
+---
