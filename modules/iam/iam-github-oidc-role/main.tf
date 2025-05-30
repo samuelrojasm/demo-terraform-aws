@@ -12,9 +12,12 @@ resource "aws_iam_role" "this" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           StringEquals = {
+            # aud (audience): verifica que el token esté dirigido a sts.amazonaws.com, asegurando que sea un token para asumir roles.
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
           },
           StringLike = {
+            # sub (subject): restringe a un repositorio y rama específicos.
+            # Es posible duplicar condiciones sub si es necesario permitir varios branches (ej: main, dev).
             "token.actions.githubusercontent.com:sub" = "repo:${var.repo_owner}/${var.repo_name}:ref:refs/heads/${var.repo_branch}"
           }
         }
