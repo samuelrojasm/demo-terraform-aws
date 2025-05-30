@@ -26,12 +26,19 @@
 - Ese parámetro utiliza el thumbprint oficial de GitHub
 - Anteriormente era obligatorio, pero a partir de **12/julio/2024** AWS usa su lista de Providers ID, por lo que para algunos providers ID usados ampliamnete como Git Hub, ya no es obligatorio especificar este parámetro.
 - La publicación de AWS con el aviso se localiza en la siguiente liga:
-    -[AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
+    - [AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
 - Si se quiere especificar (no obigatorio) el **Thumbprint de Git Hub** se localiza en la siguiente liga:
     - [GitHub Actions – Update on OIDC integration with AWS](https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/)
+    - En la configuración del OIDC la definición del thumbprint de Git Hub:
         ```hcl
-        thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+        thumbprint_list = [
+            "6938fd4d98bab03faadb97b34396831e3780aea1",
+            "1c58a3a8518e8759bf075b76b750d4f2df264fcd"
+        ]
         ```
+- Como dato adicional es posible obtener el thumbprint del certiicado de Git Hub con los siguientes comandos:
+    - 
+
 
 ---
 
