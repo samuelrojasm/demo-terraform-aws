@@ -24,10 +24,13 @@
 
 ## 🔐 Thumbprint
 - Ese parámetro utiliza el thumbprint oficial de GitHub
-- Anteriormente era obligatorio, pero a partir de FECHA AWS usa su lIsta de Providers ID, por lo que para algunos providers ID usados ampliamnete como Git Hub, ya no es obligatorio especificar este parámetro.
+- Anteriormente era obligatorio, pero a partir de **12/julio/2024** AWS usa su lIsta de Providers ID, por lo que para algunos providers ID usados ampliamnete como Git Hub, ya no es obligatorio especificar este parámetro.
+- La publicación de AWS se localiza en la siguiente liga:
+    -[AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
 - 
 - Si se quiere especificar (no obigatorio) el **Thumbprint de Git Hub** se localiza en la siguiente liga:
     - [GitHub Actions – Update on OIDC integration with AWS](https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/)
+    
 ---
 
 ## 🚀 Ventajas de separar el bootstrap
@@ -57,12 +60,14 @@
 ## 📚 Referencias
 
 - [Obtain the thumbprint for an OpenID Connect identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html)
+- [About security hardening with OpenID Connect](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 - []()
 - []()
 - []()
 - []()
 - []()
 - []()
-- []()
+- [AWS IAM simplifies management of OpenID Connect identity providers](https://aws.amazon.com/about-aws/whats-new/2024/07/aws-identity-access-management-open-id-connect-identity-providers/?utm_source=chatgpt.com)
+ - [GitHub Actions – Update on OIDC integration with AWS](https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/)
 
 ---
