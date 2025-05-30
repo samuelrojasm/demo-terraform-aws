@@ -9,18 +9,18 @@
 - Usar GitHub OIDC (OpenID Connect) para obtener tokens temporales.
 - AWS ahora soporta la federación de identidades mediante OIDC, lo que permite que GitHub Actions se autentique en AWS sin usar llaves estáticas.
 - Configuración (GitHub OIDC (OpenID Connect) + AWS IAM):
-    1.- Configuración de un **Proveedor de Identidad OIDC** en AWS IAM.
-    2.- Crear un rol IAM con los permisos necesarios para Terraform.
-    3.- Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
-    4.- En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
+    - Configuración de un **Proveedor de Identidad OIDC** en AWS IAM.
+    - Crear un rol IAM con los permisos necesarios para Terraform.
+    - Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
+    - En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
 -  Objetivos de **trust policy** segura:
-    1.- Permitir solo a un repositorio específico asumir el rol.
-    2.- Restringir a una rama específica (ej. main).
-    3.- Evitar que otros repos puedan suplantar identidad.
-    4.- Bloquear forks (si el repo es público).
+    - Permitir solo a un repositorio específico asumir el rol.
+    - Restringir a una rama específica (ej. main).
+    - Evitar que otros repos puedan suplantar identidad.
+    - Bloquear forks (si el repo es público).
 - Recomendaciones para **trust policy**
-    1.- Nunca uses **"sub": "repo:*"** ni **"Condition": null**.
-    2.- Si se requiere es posible permitir múltiples ramas:
+    - Nunca uses **"sub": "repo:*"** ni **"Condition": null**.
+    - Si se requiere es posible permitir múltiples ramas:
         ```json
         "StringLike": {
             "token.actions.githubusercontent.com:sub": [
@@ -29,7 +29,6 @@
             ]
         }
         ```
-
 - Ventajas:
     - No se almacenan llaves en GitHub Secrets.
     - Se usan tokens temporales con duración corta.
