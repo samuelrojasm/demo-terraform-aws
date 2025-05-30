@@ -18,7 +18,13 @@
 
 ---
 
-## Ventajas de separar el bootstrap
+## 🚀 Ventajas de separar el bootstrap
+| Beneficio                                   | Descripción                                                 |
+|---------------------------------------------|-------------------------------------------------------------|
+| Seguridad                                   | Evita errores de creación múltiple del mismo proveedor OIDC |
+| Reutilización                               | Otros módulos solo crean roles, no duplican OIDC            |
+| Modularidad y mantenimiento claro           | Bootstrap se mantiene separado de otros pipelines GitOps    |
+| Escalabilidad                               | Añadir aquí S3 state backend, roles base, políticas comunes etc. |
 
 ## 📚 Referencias
 
