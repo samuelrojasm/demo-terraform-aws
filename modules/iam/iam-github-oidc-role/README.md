@@ -10,9 +10,9 @@
 - AWS ahora soporta la federación de identidades mediante OIDC, lo que permite que GitHub Actions se autentique en AWS sin usar llaves estáticas.
 - Configuración (GitHub OIDC (OpenID Connect) + AWS IAM)
     1. Configuración de un **Proveedor de Identidad OIDC** en AWS IAM.
-    1. Crear un rol IAM con los permisos necesarios para Terraform.
-    1. Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
-    1. En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
+    2. Crear un rol IAM con los permisos necesarios para Terraform.
+    3. Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
+    4. En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
 - Ventajas:
     - No se almacenan llaves en GitHub Secrets.
     - Se usan tokens temporales con duración corta.
