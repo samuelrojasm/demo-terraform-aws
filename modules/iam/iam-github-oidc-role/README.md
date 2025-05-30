@@ -19,7 +19,8 @@
     - Evitar que otros repos puedan suplantar identidad.
     - Bloquear forks (si el repo es público).
 - Recomendaciones para **trust policy**
-    - Nunca uses **"sub": "repo:*"** ni **"Condition": null**.
+    - Para repositorios públicos se recomienda:
+        - Nunca usar **"sub": "repo:*"** ni **"Condition": null**.
     - Si se requiere es posible permitir múltiples ramas:
         ```json
         "StringLike": {
