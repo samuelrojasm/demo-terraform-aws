@@ -11,7 +11,7 @@
 
 ## 📂 Contenido
 ### AWS Identity and Access Management (IAM)
-  - [Crea OIDC identity providers (IdPs) de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
+  - [Crea OIDC identity provider (IdP) de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
 ### AWS EC2
   - [Crea una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
   - [Crea múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
