@@ -9,11 +9,11 @@ variable "oidc_provider_arn" {
   type        = string
 }
 
-variable "aws_account_id" {
-  description = "AWS Account ID"
+variable "audience" {
+  description = "Audience esperado en el token OIDC (normalmente 'sts.amazonaws.com')"
   type        = string
+  default     = "sts.amazonaws.com"
 }
-
 
 variable "repo_owner" {
   description = "GitHub org or username"
