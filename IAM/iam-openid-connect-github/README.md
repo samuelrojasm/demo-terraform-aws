@@ -147,10 +147,10 @@
  ## 🚀 Resultado (Outcome)
  ### Listar el OIDC creado
  - Comando de AWS CLI
-    ```hcl
+    ```json
     aws iam list-open-id-connect-providers --profile tf
     ```
-
+- Lista los OIDC
 <p align="center">
     <img src="assets/imagenes/list_oidc_providers.png" alt="Listar OIDC" width="80%">
 </p>
