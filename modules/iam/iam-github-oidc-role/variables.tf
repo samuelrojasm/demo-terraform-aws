@@ -1,5 +1,11 @@
 variable "role_name" {
-  description = "IAM Role name"
+  description = "Nombre del IAM Role"
+  type        = string
+
+}
+
+variable "oidc_provider_arn" {
+  description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
   type        = string
 }
 
@@ -7,6 +13,7 @@ variable "aws_account_id" {
   description = "AWS Account ID"
   type        = string
 }
+
 
 variable "repo_owner" {
   description = "GitHub org or username"
