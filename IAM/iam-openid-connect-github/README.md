@@ -117,7 +117,7 @@
 
 ---
 
-## 🚀 Ventajas de separar el bootstrap
+## 💡 Ventajas de separar el bootstrap
 | Beneficio                                   | Descripción                                                 |
 |---------------------------------------------|-------------------------------------------------------------|
 | Seguridad                                   | Evita errores de creación múltiple del mismo proveedor OIDC |
@@ -135,7 +135,7 @@
 
 ---
 
-## Alternativa
+## 🔀 Alternativa
 - Es posible crear el Provider OIDC usando AWS CLI
     ```bash
     aws iam create-open-id-connect-provider \
@@ -143,6 +143,17 @@
         --client-id-list sts.amazonaws.com \
         --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1 # Para OIDC de Github no es necesario
     ```
+
+ ## 🚀 Resultado (Outcome)
+ ### Listar el OIDC creado
+    ```bash
+    aws iam list-open-id-connect-providers --profile tf
+    ```
+    <p align="center">
+        <img src="assets/imagenes/list_oidc_providers.png" alt="Listar OIDC" width="70%">
+    </p>
+
+---
 
 ## 📚 Referencias
 - [OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)
