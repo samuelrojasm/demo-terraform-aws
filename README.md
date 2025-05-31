@@ -10,9 +10,11 @@
 - Diseñado para facilitar la creación de recursos como VPCs, EC2, S3, IAM, entre otros, de manera modular y reutilizable.
 
 ## 📂 Contenido
+### AWS Identity and Access Management (IAM)
+  - [Crea OIDC identity providers (IdPs) de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
 ### AWS EC2
-  - [Creación de una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
-  - [Creación de múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
+  - [Crea una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
+  - [Crea múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
 ### AWS VPC
 - [Crea una VPC con tres Subnets](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-basic)
 - [Crea una VPC con Internet Gateway](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-internet-gateway)
