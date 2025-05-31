@@ -11,6 +11,7 @@
     - Una política de permisos definida por el usuario.
 - Usar GitHub OIDC (OpenID Connect) para obtener tokens temporales.
 - AWS ahora soporta la federación de identidades mediante OIDC, lo que permite que GitHub Actions se autentique en AWS sin usar llaves estáticas.
+- Usa plantillas con **templatefile()** para interpolación de variables en el archivo **json** de la definición de la política.
 
 ---
 
@@ -51,6 +52,15 @@
         ```
 ---
 
+## Plantillas con templatefile()
+- Interpolación de variables
+- Legibilidad y dinamismo si la política necesita valores variables (como ARN o IDs)
+- Separación clara entre política y lógica Terraform.
+- Mejor soporte en editores para JSON (autocompletado, validación).
+- Permite reutilizar políticas entre múltiples roles o módulos.
+
+---
+
 ### 🚀 Resultados
 
 
@@ -70,6 +80,7 @@
 ## 📚 Referencias
 
 - [Configuring OpenID Connect in Amazon Web Services](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
-- []()
+- [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)
+- [templatefile Function](https://developer.hashicorp.com/terraform/language/functions/templatefile)
 
 ---
