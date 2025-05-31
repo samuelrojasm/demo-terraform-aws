@@ -150,9 +150,9 @@
     aws iam list-open-id-connect-providers --profile tf
     ```
 
-    <p align="center">
-        <img src="assets/imagenes/list_oidc_providers.png" alt="Listar OIDC" width="70%">
-    </p>
+<p align="center">
+    <img src="assets/imagenes/list_oidc_providers.png" alt="Listar OIDC" width="70%">
+</p>
 
 ---
 
