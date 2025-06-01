@@ -66,8 +66,7 @@
 | Nombre                | Tipo         | Descripción                                  | Valor Default     |
 |-----------------------|--------------|----------------------------------------------|-------------------|
 | `role_name`           | string       | Nombre del IAM Role                          | N/A               |
-| `oidc_provider_arn`   | string       | ARN del proveedor OIDC (por ejemplo, GitHub) | N/A               |
-| `audience`            | string       | Audience esperado en el token OIDC           | sts.amazonaws.com |
+| `aws_account_id   `   | string       | Id de la cuenta de AWS                       | N/A               |
 | `repo_owner`          | string       | Usuario u organización de GitHub             | N/A               |
 | `repo_name`           | string       | Nombre del repo de GitHub                    | N/A               |
 | `repo_branch`         | string       | Rama permitida                               | main              |
@@ -75,12 +74,17 @@
 
 ---
 
-## 🔧 Uso del módulo
+## 🧪 Ejemplo de uso (main.tf del root project)
 - Llamada al módulo
     ```hcl
-    variable "oidc_provider_arn" {
-    description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
-    type        = string
+    module "github_oidc_role" {
+        source          = "./modules/github_oidc_role"
+        role_name       = "GitHubActionsTerraformRole"
+        aws_account_id  = "123456789012"
+        repo_owner      = "miusuario"
+        repo_name       = "terraform-gitops"
+        repo_branch     = "main"
+        s3_bucket_name  = "terraform-gitops-example-unique-bucket-12345"
     }
     ```
 
