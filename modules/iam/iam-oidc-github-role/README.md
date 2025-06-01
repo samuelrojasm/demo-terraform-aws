@@ -24,8 +24,8 @@
 
 ## ⚙️ Configuración (GitHub OIDC (OpenID Connect) + AWS IAM):
 1. Configuración de un **Proveedor de Identidad OIDC** en AWS IAM.
-        - Esto se hace una sola vez por cada cuenta de AWS
-        - [El Bootstrap en Terraform](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
+    - Esto se hace una sola vez por cada cuenta de AWS
+    - [El Bootstrap en Terraform](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
 2. Crear un rol IAM con los permisos necesarios para Terraform.
 3. Configuración de una **trust policy** para que ese rol acepte tokens emitidos por GitHub Actions (según repositorio, workflow, branch).
 4. En GitHub Actions, usar la acción **aws-actions/configure-aws-credentials** con OIDC para obtener credenciales temporales.
@@ -52,7 +52,7 @@
         ```
 ---
 
-## Plantillas con templatefile()
+## 🧩 Plantillas con templatefile()
 - Interpolación de variables
 - Legibilidad y dinamismo si la política necesita valores variables (como ARN o IDs)
 - Separación clara entre política y lógica Terraform.
@@ -76,11 +76,12 @@
 ---
 
 ## 🔧 Uso del módulo
+- Llamada al módulo
     ```hcl
     variable "oidc_provider_arn" {
-  description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
-  type        = string
-}
+    description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
+    type        = string
+    }
     ```
 
 ---
