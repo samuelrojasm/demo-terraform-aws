@@ -1,12 +1,13 @@
 resource "aws_iam_role" "this" {
   name = var.role_name
 
-  assume_role_policy = templatefile("${path.module}/assume-role-policy.tpl", {
-    oidc_provider_arn = var.oidc_provider_arn
-    audience          = var.audience
-    repository        = var.repository
+  assume_role_policy = templatefile("${path.module}/assume-role-policy.tftpl", {
+    role_name      = var.role_name
+    repo_owner     = var.repo_owner
+    repo_name      = var.repo_name
+    repo_branch    = var.repo_branch
+    aws_account_id = var.aws_account_id
   })
-
 }
 
 resource "aws_iam_policy" "this" {

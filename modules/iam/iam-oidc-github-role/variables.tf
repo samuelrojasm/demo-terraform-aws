@@ -3,15 +3,9 @@ variable "role_name" {
   type        = string
 }
 
-variable "oidc_provider_arn" {
-  description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
+variable "aws_account_id" {
+  description = "ID de la cuenta de AWS"
   type        = string
-}
-
-variable "audience" {
-  description = "Audience esperado en el token OIDC (normalmente 'sts.amazonaws.com')"
-  type        = string
-  default     = "sts.amazonaws.com"
 }
 
 variable "repo_owner" {
