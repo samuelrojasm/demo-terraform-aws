@@ -1,7 +1,6 @@
 variable "role_name" {
   description = "Nombre del IAM Role"
   type        = string
-
 }
 
 variable "oidc_provider_arn" {

@@ -3,8 +3,8 @@ resource "aws_iam_role" "this" {
 
   assume_role_policy = templatefile("${path.module}/assume-role-policy.tpl", {
     oidc_provider_arn = var.oidc_provider_arn
-    audience           = var.audience
-    repository         = var.repository
+    audience          = var.audience
+    repository        = var.repository
   })
 
 }
