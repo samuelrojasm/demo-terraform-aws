@@ -61,19 +61,32 @@
 
 ---
 
-### 🚀 Resultados
+## 🔧 Variables del módulo
 
+| Nombre                | Tipo         | Descripción                                  | Valor Default     |
+|-----------------------|--------------|----------------------------------------------|-------------------|
+| `role_name`           | string       | Nombre del IAM Role                          | N/A               |
+| `oidc_provider_arn`   | string       | ARN del proveedor OIDC (por ejemplo, GitHub) | N/A               |
+| `audience`            | string       | Audience esperado en el token OIDC           | sts.amazonaws.com |
+| `repo_owner`          | string       | Usuario u organización de GitHub             | N/A               |
+| `repo_name`           | string       | Nombre del repo de GitHub                    | N/A               |
+| `repo_branch`         | string       | Rama permitida                               | main              |
+| `policy_json`         | string       | Política personalizada (formato JSON).       | N/A               |
 
 ---
 
-## 🔧 Variables principales
+## 🔧 Uso del módulo
+    ```hcl
+    variable "oidc_provider_arn" {
+  description = "ARN del proveedor OIDC (por ejemplo, GitHub)"
+  type        = string
+}
+    ```
 
-- `role_name`:      nombre del rol.
-- `aws_account_id`: tu cuenta AWS.
-- `repo_owner`:     usuario u organización de GitHub.
-- `repo_name`:      nombre del repo.
-- `repo_branch`: rama permitida.
-- `policy_json`: política personalizada (formato JSON).
+---
+
+### 🚀 Resultados
+
 
 ---
 
