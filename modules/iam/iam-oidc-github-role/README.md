@@ -58,6 +58,8 @@
 - Separación clara entre política y lógica Terraform.
 - Mejor soporte en editores para JSON (autocompletado, validación).
 - Permite reutilizar políticas entre múltiples roles o módulos.
+- Versionar políticas IAM más fácilmente.
+- Reutilizar plantillas para múltiples configuraciones o ramas.
 
 ---
 
@@ -86,6 +88,16 @@
         repo_branch     = "main"
         s3_bucket_name  = "terraform-gitops-example-unique-bucket-12345"
     }
+    ```
+
+## 📌 Validación (opcional)
+- Para validar cómo se renderiza el template
+    ```hcl
+    terraform console
+    > templatefile("${path.module}/assume-role-policy.tpl", {
+        federated_arn = "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com",
+        audience      = "token.actions.githubusercontent.com"
+    })
     ```
 
 ---
