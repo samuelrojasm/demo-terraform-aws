@@ -12,12 +12,15 @@
 ## 📂 Contenido
 ### AWS Identity and Access Management (IAM)
   - [Crea OIDC identity provider (IdP) de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
+  - [Módulo - Crea rol IAM con OIDC para GitHub Actions](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/iam/iam-oidc-github-role)
+  - (Ejemplo de uso de módulo OIDC-rol con asignación de Política)[https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/iam/iam-oidc-github-role/ejemplos/oidc-role-s3-policy]
 ### AWS EC2
   - [Crea una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
   - [Crea múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
 ### AWS VPC
 - [Crea una VPC con tres Subnets](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-basic)
 - [Crea una VPC con Internet Gateway](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/VPC/vpc-internet-gateway)
+- [Módulo - Crea AWS VPC](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/vpc/vpc-basic)
 ### Amazon S3 (Amazon Simple Storage Service)
 - [Bucket para backend remoto de Terraform state](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-terraform-state)
 - [Almacenar el estado de Terraform en Amazon S3](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-tf-backend-state)
