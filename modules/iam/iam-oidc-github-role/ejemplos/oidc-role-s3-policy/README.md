@@ -34,7 +34,7 @@ Este módulo crea los siguientes recursos de AWS:
 - Ejecución de terraform console
 
     <p align="center">
-    <img src="../../assets/imagenesterraform_console_output.png" alt="Terraform Console" width="80%">
+    <img src="../../assets/imagenes/terraform_console_output.png" alt="Terraform Console" width="80%">
     </p>
 
 ---
