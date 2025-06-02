@@ -86,7 +86,6 @@
         repo_owner      = "miusuario"
         repo_name       = "terraform-gitops"
         repo_branch     = "main"
-        s3_bucket_name  = "terraform-gitops-example-unique-bucket-12345"
     }
     ```
 
