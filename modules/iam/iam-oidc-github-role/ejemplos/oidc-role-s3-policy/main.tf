@@ -8,8 +8,12 @@ locals {
   })
 }
 
-resource "aws_iam_policy" "github_actions_policy" {
-  name        = "${var.role_name}-policy"
-  description = "Policy for GitHub Actions Terraform access"
-  policy      = local.github_actions_policy_json
+module "github_oidc_role" {
+  source         = "../../"
+  role_name      = "github-actions-demo-role"
+  aws_account_id = "123456789012"
+  repo_owner     = "miusuario"
+  repo_name      = "demo-gitops-repo"
+  repo_branch    = "main"
+  policy_json    = local.github_actions_policy_json
 }
