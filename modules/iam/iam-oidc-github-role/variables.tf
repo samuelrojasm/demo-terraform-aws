@@ -25,6 +25,13 @@ variable "repo_branch" {
 }
 
 variable "policy_json" {
-  description = "IAM policy JSON string"
+  description = "Documento JSON con la política personalizada que se creará y asignará al rol."
   type        = string
+  default     = null
+}
+
+variable "policy_arn_list" {
+  description = "Lista de ARNs de políticas IAM existentes a asociar al rol."
+  type        = list(string)
+  default     = []
 }

@@ -72,7 +72,8 @@
 | `repo_owner`          | string       | Usuario u organización de GitHub             | N/A               |
 | `repo_name`           | string       | Nombre del repo de GitHub                    | N/A               |
 | `repo_branch`         | string       | Rama permitida                               | main              |
-| `policy_json`         | string       | Política personalizada (formato JSON).       | N/A               |
+| `policy_json`         | string       | Política personalizada (formato JSON)        | null              |
+| `policy_arn_list`     | string       | Lista de ARNs de políticas IAM existentes    | []                |
 
 ---
 
@@ -86,8 +87,27 @@
         repo_owner      = "miusuario"
         repo_name       = "terraform-gitops"
         repo_branch     = "main"
+        policy_json    = local.github_actions_policy_json
     }
     ```
+- Parámetro opcional
+    - `policy_arn_list`: Opcionalmente, si no se define una política personalizada, el módulo puede permitir usar ARNs de políticas existentes.
+    - Llamada al módulo
+        ```hcl
+        module "github_oidc_role" {
+            source          = "./modules/github_oidc_role"
+            role_name       = "GitHubActionsTerraformRole"
+            aws_account_id  = "123456789012"
+            repo_owner      = "miusuario"
+            repo_name       = "terraform-gitops"
+            repo_branch     = "main"
+            policy_json     = null
+            policy_arn_list = [
+                "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
+                "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
+            ]
+        }
+        ```
 
 ## 📌 Validación (opcional)
 - Para validar cómo se renderiza el template
@@ -98,11 +118,6 @@
         audience      = "token.actions.githubusercontent.com"
     })
     ```
-
----
-
-### 🚀 Resultados
-
 
 ---
 
