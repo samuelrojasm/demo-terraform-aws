@@ -20,6 +20,8 @@ Este módulo crea los siguientes recursos de AWS:
 - **aws_iam_role_policy_attachment**: Asocia la política IAM creada (o una existente) con el rol IAM generado, permitiendo aplicar permisos.
 - Opcionalmente, si no se define una política personalizada, el módulo puede permitir usar ARNs de políticas existentes.
 
+---
+
 ## 🚀 Resultado (Outcome)
 ### Terraform console
 - Para ver directamente los outputs del módulo (sin exponerlos)
