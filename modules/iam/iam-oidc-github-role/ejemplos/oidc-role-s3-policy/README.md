@@ -21,7 +21,21 @@ Este módulo crea los siguientes recursos de AWS:
 - Opcionalmente, si no se define una política personalizada, el módulo puede permitir usar ARNs de políticas existentes.
 
 ## 🚀 Resultado (Outcome)
-### Terraform apply
+### Terraform console
+- Para ver directamente los outputs del módulo (sin exponerlos)
+    
+    ```bash
+    terraform console
+    > module.github_oidc_role
+    > module.github_oidc_role.role_info
+    > module.github_oidc_role.policy_info
+    ```
+
+- Ejecución de terraform console
+
+    <p align="center">
+    <img src="../../assets/imagenesterraform_console_output.png" alt="Terraform Console" width="80%">
+    </p>
 
 ---
 
