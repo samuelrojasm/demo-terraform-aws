@@ -11,7 +11,7 @@ locals {
 module "github_oidc_role" {
   source         = "../../"
   role_name      = "github-actions-demo-role"
-  aws_account_id = "123456789012"
+  aws_account_id = "592660788982"
   repo_owner     = "miusuario"
   repo_name      = "demo-gitops-repo"
   repo_branch    = "main"
