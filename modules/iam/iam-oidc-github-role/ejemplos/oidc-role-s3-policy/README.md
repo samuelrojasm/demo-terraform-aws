@@ -42,6 +42,8 @@ Este módulo crea los siguientes recursos de AWS:
 ---
 
 ## 📚 Referencias
-[Terraform - Bootstrap - Crea Proveedor de identidad OIDC de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
+- [Terraform - Bootstrap - Crea Proveedor de identidad OIDC de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
+- [Managed policies and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html)
+- [Example IAM identity-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)
 
 ---
