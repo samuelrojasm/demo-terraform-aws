@@ -23,3 +23,8 @@ output "policy_info_all" {
   description = "Atributos completos de la política personalizada (si fue creada)"
   value       = aws_iam_policy.this
 }
+
+output "attached_policy_arns" {
+  description = "Lista de ARNs de políticas existentes adjuntadas."
+  value       = [for attachment in aws_iam_role_policy_attachment.existing : attachment.policy_arn]
+}
