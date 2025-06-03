@@ -24,9 +24,9 @@ Un repositorio básico con:
 
 ## 🧪 Servicios creados
 Este proyecto crea:
-- VPC con subredes públicas.
-- Clúster EKS básico.
-- Node Group con instancias Spot.
+- VPC con subredes privadas, endpoint privado y acceso por SSM
+- Clúster EKS básico
+- Node Group con instancias Spot
 
 ---
 
@@ -42,11 +42,14 @@ Este proyecto crea:
 ---
 
 ## 🧩 Mejoras futuras sugeridas
-- Soporte para IRSA / OIDC
-- Ingress Controller (ALB/Nginx)
-- Dashboards y monitoreo (Prometheus, Grafana)
-- Cluster privado (subredes privadas y NAT Gateway)
-- Autoscaling avanzado con Spot + OnDemand
+- 🔐 Habilitar soporte para OIDC e IRSA
+- 📦 Integración con Helm y addons (VPC CNI, CoreDNS, kube-proxy)
+- 🌐 Ingress Controller (ALB/Nginx)
+- 🔒 Seguridad adicional (SGs refinadas, policies mínimas)
+- 📈 Dashboards y monitoreo con Prometheus + Grafana
+- 🧠 Cluster privado (subredes privadas y NAT Gateway)
+- ☁️ Autoscaling avanzado-Mixed Auto Scaling: SPOT + On-Demand
+- 🗂 Módulos separados por componentes (VPC, EKS, node groups)
 
 ---
 
