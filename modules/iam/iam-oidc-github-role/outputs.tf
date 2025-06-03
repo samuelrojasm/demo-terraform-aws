@@ -1,20 +1,25 @@
 output "role_info" {
-  description = "Información detallada del IAM Role"
-  value = {
-    name        = aws_iam_role.this.name
-    arn         = aws_iam_role.this.arn
-    id          = aws_iam_role.this.id
-    path        = aws_iam_role.this.path
-    unique_id   = aws_iam_role.this.unique_id
-    create_date = aws_iam_role.this.create_date
-  }
+  description = "Nombre del rol IAM creado"
+  value       = aws_iam_role.this
 }
 
 output "policy_info" {
-  description = "Details of the IAM policy"
+  description = "Atributos de la política personalizada (si fue creada)"
   value = {
-    name = aws_iam_policy.this.name
-    arn  = aws_iam_policy.this.arn
-    id   = aws_iam_policy.this.id
+    for k, policy in aws_iam_policy.this :
+    k => {
+      id        = policy.id
+      name      = policy.name
+      arn       = policy.arn
+      path      = policy.path
+      policy    = policy.policy
+      tags      = policy.tags
+      policy_id = policy.policy_id
+    }
   }
+}
+
+output "policy_info_all" {
+  description = "Atributos completos de la política personalizada (si fue creada)"
+  value       = aws_iam_policy.this
 }
