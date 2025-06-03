@@ -13,7 +13,7 @@
 ### AWS Identity and Access Management (IAM)
   - [Crea OIDC identity provider (IdP) de GitHub](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/IAM/iam-openid-connect-github)
   - [Módulo - Crea rol IAM con OIDC para GitHub Actions](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/iam/iam-oidc-github-role)
-  - (Ejemplo de uso de módulo OIDC-rol con asignación de Política)[https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/iam/iam-oidc-github-role/ejemplos/oidc-role-s3-policy]
+  - [Ejemplo de uso de módulo OIDC-rol con asignación de Política](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/modules/iam/iam-oidc-github-role/ejemplos/oidc-role-s3-policy)
 ### AWS EC2
   - [Crea una instancia EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-simple-instance)
   - [Crea múltiples instancias de la misma familia de AWS EC2](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/EC2/ec2-same-family)
@@ -24,6 +24,8 @@
 ### Amazon S3 (Amazon Simple Storage Service)
 - [Bucket para backend remoto de Terraform state](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-terraform-state)
 - [Almacenar el estado de Terraform en Amazon S3](https://github.com/samuelrojasm/demo-terraform-aws/tree/main/s3-bucket/s3-tf-backend-state)
+
+---
 
 ## 🚀 Requisitos
 ### 1. Instalar AWS CLI
@@ -45,6 +47,8 @@ En mi caso uso un usuario AWS SSO.
     ```
     aws sso logout
     ```
+
+---
 
 ## 👣 Pasos básicos de Terraform
 Pasos básicos para usar Terraform de manera eficiente en cualquier proyecto.
@@ -178,11 +182,15 @@ terraform {
 | **`terraform state list`** | Muestra una lista de recursos en el estado actual.          |
 | **`terraform destroy`**    | Elimina todos los recursos gestionados por Terraform.       |
 
+---
+
 ## ✔️ Buenas Prácticas:
 1. **Mantener los archivos de estado seguros**: Los archivos de estado (**`terraform.tfstate`**) contienen información sensible (como credenciales o configuraciones internas). Usa almacenamiento remoto y habilita el cifrado.
 2. **Uso de módulos**: Organizar el código de infraestructura en módulos para reutilizar configuraciones y hacer el código más modular.
 3. **Revisar siempre el **`plan`** antes de aplicar cambios**: Usar siempre **`terraform plan`** antes de **`terraform apply`** para evitar cambios no deseados.
 4. **Automatización**: Integrar Terraform en un pipeline de CI/CD para automatizar la provisión de infraestructura.
+
+---
 
 ## ⚙️ Estructura del proyecto
 ```bash
@@ -217,6 +225,8 @@ terraform {
 | **`output.tf`**            | Provides information about the created resources.                                   |
 | **`provider.tf`**          | Defines the versions used for the providers and terraform.                          |
 | **`README.md`**            | Documentation on how to use the module, including descriptions of input variables and outputs.  |
+
+---
 
 ## 📖 Data Source en Terraform
 - En Terraform, un ***Data Source*** se usa para leer datos externos o recursos existentes que ya están creados fuera de Terraform, o para consultar información dinámica de tu infraestructura que no necesariamente es gestionada directamente por Terraform.
@@ -287,6 +297,8 @@ output "ami_architecture" {
 }
 ```
 
+---
+
 ## 📚 Referencias
 - [Terraform](https://www.terraform.io/downloads.html)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
@@ -295,3 +307,5 @@ output "ami_architecture" {
 - [Resource: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/resources/instance)
 - [Terraform Data Sources](https://developer.hashicorp.com/terraform/language/data-sources)
 - [Data Source: aws_ami](https://registry.terraform.io/providers/hashicorp/aws/5.84.0/docs/data-sources/ami)
+
+---
