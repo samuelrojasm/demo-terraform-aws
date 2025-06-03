@@ -172,6 +172,8 @@ terraform {
 - Es una buena práctica versionar los archivos de configuración de Terraform en un sistema de control de versiones como Git. 
 - Esto permite que puedas realizar un seguimiento de los cambios a lo largo del tiempo y facilitar la colaboración en equipos.
 
+---
+
 ## 📋 Comandos Básicos de Terraform:
 | Comando                    | Descripción                                                 |
 |----------------------------|-------------------------------------------------------------|
