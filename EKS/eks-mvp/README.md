@@ -16,9 +16,12 @@
 
 ## 💡 Alcance
 Un repositorio básico con:
+- Terraform-only: nada de eksctl, kubectl, ni aws cli para el despliegue.
 - Infraestructura mínima de EKS (Cluster + Node Group con Spot Instances).
+- Instancias EC2 Spot para el nodo worker.
 - Configuración para poder usar **kubectl** directamente (aws eks update-kubeconfig).
 - Modular y listo para escalar con nuevas features.
+- Red privada: sin exposición pública, ideal para laboratorios internos y aprendizaje.
 
 ---
 
@@ -27,6 +30,38 @@ Este proyecto crea:
 - VPC con subredes privadas, endpoint privado y acceso por SSM
 - Clúster EKS básico
 - Node Group con instancias Spot
+
+---
+
+## 🔐 Usar AWS SSM Session Manager con Port Forwarding
+- Usar **AWS SSM Session Manager** para acceder a instancias privadas de forma segura y sin claves SSH, utilizando port forwarding. 
+- Ideal para acceder a servicios internos de AWS.
+- Permite administrar clústeres EKS privados sin exponer nada públicamente ni usar llaves SSH.
+### Componentes:
+- Acceso sin SSH
+- SSM Session Manager configurado con IAM
+- Port forwarding desde localhost al destino privado
+- Túnel seguro para conexiones a la VPC privada
+- Diagnóstico con `session-manager-plugin` y `aws ssm start-session`
+### Cloud9 para acceder a cluster privado
+
+### Ejemplo de uso:
+    ```bash
+    aws ssm start-session \
+    --target i-xxxxxxxxxxxxxxxxx \
+    --document-name AWS-StartPortForwardingSession \
+    --parameters '{"portNumber":["5432"],"localPortNumber":["5432"]}'
+    ```
+
+---
+
+## ## 🔌 Conexión al clúster con kubectl
+
+- Después de **Terraform apply** y crear el clúster EKS, ejecutr el siguiente comando para configurar `kubectl`:
+
+    ```bash
+    aws eks update-kubeconfig --name eks-lab --region us-east-1
+    ```
 
 ---
 
