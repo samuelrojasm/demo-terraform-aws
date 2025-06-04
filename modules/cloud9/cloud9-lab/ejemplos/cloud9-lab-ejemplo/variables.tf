@@ -14,3 +14,19 @@ variable "purpose" {
   description = "Propósito de uso de los recursos (demo, lab, test, dev, prod)"
   type        = string
 }
+
+# Datos de la VPC
+variable "cidr_block" {
+  description = "Rango de direcciones IP para la VPC"
+  type        = string
+}
+
+variable "private_subnet_cidrs" {
+  description = "Valores CIDR de la Private Subnet"
+  type        = list(string)
+}
+
+variable "availability_zones" {
+  description = "Zonas de disponibilidad para HA"
+  type        = list(string)
+}
