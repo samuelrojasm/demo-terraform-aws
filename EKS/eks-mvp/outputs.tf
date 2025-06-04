@@ -4,7 +4,7 @@ output "cluster_name" {
 }
 
 output "kubeconfig_command" {
-  description = "Comando para configurar kubectl"
+  description = "Comando para configurar kubectl con el clúster EKS"
   value       = "aws eks update-kubeconfig --name ${module.eks.cluster_name} --region ${var.aws_region}"
 }
 
