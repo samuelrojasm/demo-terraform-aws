@@ -15,7 +15,7 @@
 | Nombre                       | Tipo         | Descripción                                       | Valor Default     |
 |------------------------------|--------------|---------------------------------------------------|-------------------|
 | `name`                       | string       | The name of the environment                       | N/A               |
-| `description`                | string       | The description of the environment                | N/A               |
+| `description`                | string       | The description of the environment                | Cloud9 environment for labs               |
 | `instance_type`              | string       | The type of instance to connect to the environment|t3.small           |
 | `subnet_id`                  | string       | The ID of the subnet in Amazon VPC that AWS Cloud9 will use to communicate with the Amazon EC2 instance | N/A|
 | `automatic_stop_time_minutes`| number       | The number of minutes until the running instance is shut down after the environment has last been used. | 60|
@@ -28,15 +28,16 @@
 ## 🧪 Ejemplo de uso (main.tf del root project)
 - Llamada al módulo
     ```hcl
-    module "github_oidc_role" {
-        name                        = var.name
-        description                 = var.description
-        instance_type               = var.instance_type
-        subnet_id                   = var.subnet_id
-        automatic_stop_time_minutes = var.automatic_stop_time_minutes
-        image_id                    = var.image_id
-        connection_type             = var.connection_type
-        tags                        = var.tags
+    module "cloud9_lab" {
+        source  = "./modules/cloud9-lab"
+        name                        = "cloud9-eks-lab"
+        description                 = "Instancia para administrar EKS"
+        instance_type               = "t3.small"
+        subnet_id                   = "subnet-0abc123456789def0"
+        tags = {
+            Environment = "lab"
+            Owner       = "cloud-team"
+        }
     }
     ```
 
