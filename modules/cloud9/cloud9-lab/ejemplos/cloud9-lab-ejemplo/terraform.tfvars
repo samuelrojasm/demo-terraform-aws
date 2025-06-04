@@ -6,4 +6,3 @@ purpose    = "lab"
 # Argumentos del módulo VPC
 cidr_block           = "10.0.0.0/16"
 private_subnet_cidrs = ["10.0.1.0/24"]
-availability_zones   = [var.aws_region + "a"]
