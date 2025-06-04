@@ -10,7 +10,7 @@
 # entornos de laboratorio o producción.
 
 module "cloud9_lab" {
-  source    = "../../"
+  source = "../../"
 
   depends_on = [module.vpc]
 
