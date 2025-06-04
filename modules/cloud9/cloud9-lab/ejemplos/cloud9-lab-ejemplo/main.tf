@@ -11,6 +11,9 @@
 
 module "cloud9_lab" {
   source    = "../../"
+
+  depends_on = [module.vpc]
+
   name      = "cloud9-lab-example"
   subnet_id = module.vpc.private_subnets[0]
   tags = {
