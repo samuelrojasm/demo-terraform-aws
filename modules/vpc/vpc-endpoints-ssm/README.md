@@ -15,16 +15,7 @@
 | `ssmmessages`                | Interface        |`com.amazonaws.<region>.ssmmessages`|
 | `ec2messages`                | Interface        |`com.amazonaws.<region>.ec2messages`|
 | `kms` (opcional si usas KMS) | Interface        |`com.amazonaws.<region>.kms`|
-| `(Opcional) Logs`              | Interface      |`com.amazonaws.<region>.logs` (si usas CloudWatch)|
-
----
-
-## 🧪 Requisitos
-- La EC2 debe tener rol IAM con estas políticas:
-    ```bash
-    AmazonSSMManagedInstanceCore
-    ```
-- El agente SSM debe estar instalado y corriendo.
+| `(Opcional) Logs`            | Interface        |`com.amazonaws.<region>.logs` (si usas CloudWatch)|
 
 ---
 
