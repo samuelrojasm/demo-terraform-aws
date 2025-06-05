@@ -1,44 +1,37 @@
-variable "name" {
-  description = "Name of the Cloud9 environment"
-  type        = string
+variable "vpc_id" {
+    description = "ID de la VPC"
+    type = string
 }
 
-variable "description" {
-  type    = string
-  default = "Cloud9 environment for labs"
+variable "region" {
+  description = "AWS Region"
+  type = string
 }
 
-variable "instance_type" {
-  description = "Instance type for Cloud9"
-  type        = string
-  default     = "t3.small"
+variable "subnet_ids" {
+  description = "List of subnet IDs where to place the endpoints"
+  type = list(string)
 }
 
-variable "image_id" {
-  description = "The identifier for the Amazon Machine Image (AMI) that's used to create the EC2 instance"
-  type        = string
-  default     = "amazonlinux-2023-x86_64"
+variable "allowed_cidr_blocks" {
+  description = "CIDR blocks allowed to access the endpoints"
+  type = list(string)
 }
 
-variable "subnet_id" {
-  description = "Subnet ID where Cloud9 will be deployed"
-  type        = string
+variable "include_kms_endpoint" {
+  description = "Whether to include the CloudWatch Logs endpoint"
+  type    = bool
+  default = false
 }
 
-variable "automatic_stop_time_minutes" {
-  description = "Time in minutes to automatically stop the instance"
-  type        = number
-  default     = 60
-}
-
-variable "connection_type" {
-  description = "The connection type used for connecting to an Amazon EC2 environment"
-  type        = string
-  default     = "CONNECT_SSM"
+variable "include_logs_endpoint" {
+   description = "Whether to include the KMS endpoint"
+  type    = bool
+  default = false
 }
 
 variable "tags" {
-  description = "Tags to apply to the Cloud9 environment"
+  description = "Tags to apply to resources"
   type        = map(string)
   default     = {}
 }
