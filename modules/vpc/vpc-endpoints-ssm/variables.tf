@@ -1,3 +1,6 @@
+#----------------------------------------
+# Atributos del módulo: vpc-endpoints-ssm
+#----------------------------------------
 variable "vpc_id" {
     description = "ID de la VPC"
     type = string
@@ -34,4 +37,9 @@ variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
   default     = {}
+}
+
+variable "sg-id-ec2" {
+  description = "ID de Security Group asignado a la EC2 SSM"
+  type        = string
 }

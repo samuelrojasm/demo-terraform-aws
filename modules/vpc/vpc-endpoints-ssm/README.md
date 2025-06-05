@@ -23,11 +23,12 @@
 - Los endpoints deben estar en subnets privadas.
 - Private DNS habilitado `(private_dns_enabled = true)` hace que las instancias puedan usar `ssm.<region>.amazonaws.com` directamente.
 - La seguridad de acceso a los endpoints se gestiona con el `Security Group`.
-- `kms` y `logs` se manejan como endpoints opcionales controlados con flags.
+- `kms` y `logs` se manejan como endpoints opcionales controlados con flags
 
 ---
 
 ## 🔧 Argumentos del módulo
+- Lista de argumentos
 
 | Nombre                       | Tipo         | Valor Default  |
 |------------------------------|--------------|----------------|
@@ -38,7 +39,15 @@
 | `include_logs_endpoint`      | bool         |false           |
 | `include_kms_endpoint`       | bool         |false           |
 | `tags`                       | map(string)  |{ }             |
+| `sg-id-ec2`                  | string       | -              |
 
+- Uso de Security Group Referencing
+    - Restricción de acceso mediante **Security Group referencing**, permitiendo únicamente instancias asociadas al SG `sg-id-ec2`  comunicarse con los endpoints de SSM vía**SG-to-SG rules**.
+    - Dinamismo: no necesitas especificar IPs ni CIDRs.
+    - Seguridad: se basa en relaciones entre recursos, no en rangos abiertos.
+    - Escalabilidad: si asocias más EC2 al SG, ya tienen acceso sin tocar reglas.
+    - Solo las interfaces de red (ENIs) de las VPCs Endpoints que tienen el SG `sg-id-ec2` pueden iniciar conexiones entrantes a este recurso.
+    
 ---
 
 ## 🧪 Ejemplo de uso (main.tf del root project)
@@ -67,5 +76,6 @@
 - [Improve the security of EC2 instances by using VPC endpoints for Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html)
 - [How do I create Amazon VPC endpoints so that I can use Systems Manager](https://repost.aws/knowledge-center/ec2-systems-manager-vpc-endpoints)
 - [VPC Endpoints centralizados](https://www.paradigmadigital.com/dev/vpc-endpoints-centralizados-que-son)
+- [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html)
 
 ---

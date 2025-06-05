@@ -41,7 +41,10 @@ resource "aws_security_group" "this" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = var.allowed_cidr_blocks
+    
+    # security group referencing: Solo permite conexiones entrantes desde EC2 con SSM que usan un SG específico
+    security_groups = [var.sg-id-ec2]
+    # cidr_blocks = var.allowed_cidr_blocks
   }
 
   egress {
