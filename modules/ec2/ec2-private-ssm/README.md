@@ -49,6 +49,7 @@
 | `subnet_id`                  | string       | -              |             
 | `instance_type`              | string       |t3.micro        |
 | `ami`                        | string       |-               |
+| `vpce_sg_id`                 | string       |-               |
 | `environment`                | string       |lab             |
 | `project`                    | string       |demo            |
 | `purpose`                    | string       |"SSM-managed private EC2|
