@@ -75,6 +75,6 @@
 
 - [Improve the security of EC2 instances by using VPC endpoints for Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html)
 - [How do I create Amazon VPC endpoints so that I can use Systems Manager](https://repost.aws/knowledge-center/ec2-systems-manager-vpc-endpoints)
-- [VPC Endpoints centralizados:](https://www.paradigmadigital.com/dev/vpc-endpoints-centralizados-que-son)
+- [VPC Endpoints centralizados](https://www.paradigmadigital.com/dev/vpc-endpoints-centralizados-que-son)
 
 ---
