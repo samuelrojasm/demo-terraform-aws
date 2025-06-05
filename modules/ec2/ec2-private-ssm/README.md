@@ -51,6 +51,7 @@
 | `ami`                        | string       |-               |
 | `environment`                | string       |lab             |
 | `project`                    | string       |demo            |
+| `purpose`                    | string       |"SSM-managed private EC2|
 
 ---
 

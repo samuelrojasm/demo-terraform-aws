@@ -38,10 +38,10 @@ resource "aws_security_group" "this" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = { 
-    Name = "ec2-private-sg"
+  tags = {
+    Name        = "ec2-private-sg"
     Environment = var.environment
-    Project = var.project
+    Project     = var.project
   }
 }
 
@@ -55,8 +55,9 @@ resource "aws_instance" "this" {
   associate_public_ip_address = false
 
   tags = {
-    Name = "ec2-private-ssm"
+    Name        = "ec2-private-ssm"
     Environment = var.environment
-    Project = var.project
-    }
+    Project     = var.project
+    Purpose     = var.purpose
+  }
 }
