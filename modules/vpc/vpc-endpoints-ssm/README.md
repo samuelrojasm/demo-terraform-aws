@@ -23,7 +23,7 @@
 - La EC2 debe tener rol IAM con estas políticas:
     ```bash
     AmazonSSMManagedInstanceCore
-    ```hcl
+    ```
 - El agente SSM debe estar instalado y corriendo.
 
 ---
@@ -46,7 +46,7 @@
 | `allowed_cidr_blocks`        | list(string) | -              |
 | `include_logs_endpoint`      | bool         |false           |
 | `include_kms_endpoint`       | bool         |false           |
-| `tags`                       | map(string)  |{}             |
+| `tags`                       | map(string)  |{ }             |
 
 ---
 
@@ -74,6 +74,7 @@
 ## 📚 Referencias
 
 - [Improve the security of EC2 instances by using VPC endpoints for Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html)
-- 
+- [How do I create Amazon VPC endpoints so that I can use Systems Manager](https://repost.aws/knowledge-center/ec2-systems-manager-vpc-endpoints)
+- [VPC Endpoints centralizados:](https://www.paradigmadigital.com/dev/vpc-endpoints-centralizados-que-son)
 
 ---
