@@ -49,7 +49,6 @@
 | `subnet_id`                  | string       | -              |             
 | `instance_type`              | string       |t3.micro        |
 | `ami`                        | string       |-               |
-| `vpce_sg_id`                 | string       |-               |
 | `environment`                | string       |lab             |
 | `project`                    | string       |demo            |
 | `purpose`                    | string       |"SSM-managed private EC2|
@@ -59,8 +58,9 @@
 ## 🧪 Ejemplo de uso (main.tf del root project)
 - Llamada al módulo
     ```hcl
-    module "ssm_vpc_endpoints" {
-        source               = "./modules/ssm-vpc-endpoints"
+    module "ec2-private-ssm" {
+        source               = "./modules/ec2/ec2-private-ssm"
+
         vpc_id               = "vpc-12345678"
         subnet_ids           = ["subnet-aaaa", "subnet-bbbb"]
         region               = "us-east-1"

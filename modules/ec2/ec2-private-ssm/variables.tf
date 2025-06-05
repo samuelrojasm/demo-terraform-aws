@@ -41,8 +41,3 @@ variable "ami" {
   description = "Amazon Machine Image (AMI)"
   type        = string
 }
-
-variable "vpce_sg_id" {
-  description = "ID del Security Group de los VPC Endpoints SSM"
-  type        = string
-}
