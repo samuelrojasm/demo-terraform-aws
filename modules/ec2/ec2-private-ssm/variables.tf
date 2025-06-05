@@ -1,27 +1,37 @@
 # Difinción de variables
 
-variable "aws_region" {
-  description = "La región donde se desplegarán los recursos de AWS"
+# -----------------------------------------------------
+# Atributos requeridos por el módulo: ec2-private-ssm
+# -----------------------------------------------------
+variable "project" {
+  description = "Nombre del proyecto"
   type        = string
+  default = "demo"
 }
 
-variable "service" {
-  description = "Nombre del servicio"
-  type        = string
-}
-
-variable "purpose" {
+variable "environment" {
   description = "Propósito de uso de los recursos (demo, lab, test, dev, prod)"
   type        = string
+  default = "lab"
 }
 
-# Datos de la VPC
-variable "cidr_block" {
-  description = "Rango de direcciones IP para la VPC"
-  type        = string
+variable "vpc_id" {
+    description = "ID de la VPC"
+    type = string
 }
 
-variable "private_subnet_cidrs" {
-  description = "Valores CIDR de la Private Subnet"
-  type        = list(string)
+variable "subnet_id" {
+  description = "Subnet ID where to place the EC2"
+  type = string
+}
+
+variable "instance_type" {
+  description = "Type of EC2"
+  type = string
+  default = "t3.micro"
+}
+
+variable "ami" {
+  description = "Type of EC2"
+  type = string
 }

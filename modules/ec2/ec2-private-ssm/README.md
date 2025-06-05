@@ -13,6 +13,8 @@
 - Incluir automáticamente los VPC endpoints necesarios.
 - Este entorno sirve como bastión seguro o punto de entrada para administrar recursos en redes privadas (como EKS privados), sin necesidad de abrir puertos ni usar claves SSH.
 
+---
+
 ## 🧪 Ventajas:
 - Acceso seguro al clúster EKS privado, vía túneles SSM
 - Automatización con Terraform, reutilizando el módulo en diferentes proyectos o laboratorios
@@ -22,25 +24,56 @@
 ---
 
 ## 🧱 Recursos creados
-- Crea VPC y subnets privadas
-- Lanza una EC2 con rol SSM
-- Llama al submódulo vpc-endpoints-ssm
+- VPC
+- Subnets privadas
+- Una EC2 con rol SSM
+    - Acceso a la EC2 solo vía SSM (sin NAT, sin IGW)
+- Llama al submódulo **vpc-endpoints-ssm**
 
 ---
 
-## 🚀 Resultado (Outcome)
-### Terraform output
-<p align="center">
-    <img src="../../assets/imagenes/terraform_console_output.png" alt="Terraform Console" width="80%">
-</p>
-
-### Terraform output
-<p align="center">
-    <img src="../../assets/imagenes/terraform_console_output.png" alt="Terraform Console" width="80%">
-</p>
+## 🧪 Requisitos
+- La EC2 debe tener rol IAM con estas políticas:
+    ```bash
+    AmazonSSMManagedInstanceCore
+    ```
+- El agente SSM debe estar instalado y corriendo.
 
 ---
 
+## 🔧 Argumentos del módulo
+
+| Nombre                       | Tipo         | Valor Default  |
+|------------------------------|--------------|----------------|
+| `vpc_id`                     | string       | -              |               
+| `subnet_id`                  | string       | -              |             
+| `instance_type`              | string       |t3.micro        |
+| `ami`                        | string       |-               |
+| `environment`                | string       |lab             |
+| `project`                    | string       |demo            |
+
+---
+
+## 🧪 Ejemplo de uso (main.tf del root project)
+- Llamada al módulo
+    ```hcl
+    module "ssm_vpc_endpoints" {
+        source               = "./modules/ssm-vpc-endpoints"
+        vpc_id               = "vpc-12345678"
+        subnet_ids           = ["subnet-aaaa", "subnet-bbbb"]
+        region               = "us-east-1"
+        allowed_cidr_blocks  = ["10.0.0.0/16"]
+        include_logs_endpoint = true
+        include_kms_endpoint  = true
+
+        tags = {
+            Environment = "lab"
+            Project     = "eks-private-cluster"
+        }
+    }
+    ```
+---
 
 - [Terraform module to create AWS VPC resources](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest)
 
+---
