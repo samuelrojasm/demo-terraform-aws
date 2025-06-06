@@ -15,15 +15,15 @@
 | `ssmmessages`                | Interface        |`com.amazonaws.<region>.ssmmessages`|
 | `ec2messages`                | Interface        |`com.amazonaws.<region>.ec2messages`|
 | `kms` (opcional si usas KMS) | Interface        |`com.amazonaws.<region>.kms`|
-| `(Opcional) Logs`            | Interface        |`com.amazonaws.<region>.logs` (si usas CloudWatch)|
+| `Logs`(opcional si usas CloudWatch) | Interface |`com.amazonaws.<region>.logs`|
 
 ---
 
-📌 Notas
+## 📌 Notas
 - Los endpoints deben estar en subnets privadas.
 - Private DNS habilitado `(private_dns_enabled = true)` hace que las instancias puedan usar `ssm.<region>.amazonaws.com` directamente.
 - La seguridad de acceso a los endpoints se gestiona con el `Security Group`.
-- `kms` y `logs` se manejan como endpoints opcionales controlados con flags
+- `kms` y `logs` se manejan como endpoints opcionales controlados con flags.
 
 ---
 
@@ -35,18 +35,9 @@
 | `vpc_id`                     | string       | -              |               
 | `subnet_ids`                 | list(string) | -              |             
 | `region`                     | string       | -              |
-| `allowed_cidr_blocks`        | list(string) | -              |
 | `include_logs_endpoint`      | bool         |false           |
 | `include_kms_endpoint`       | bool         |false           |
 | `tags`                       | map(string)  |{ }             |
-| `sg-id-ec2`                  | string       | -              |
-
-- Uso de Security Group Referencing
-    - Restricción de acceso mediante **Security Group referencing**, permitiendo únicamente instancias asociadas al SG `sg-id-ec2`  comunicarse con los endpoints de SSM vía**SG-to-SG rules**.
-    - Dinamismo: no necesitas especificar IPs ni CIDRs.
-    - Seguridad: se basa en relaciones entre recursos, no en rangos abiertos.
-    - Escalabilidad: si asocias más EC2 al SG, ya tienen acceso sin tocar reglas.
-    - Solo las interfaces de red (ENIs) de las VPCs Endpoints que tienen el SG `sg-id-ec2` pueden iniciar conexiones entrantes a este recurso.
     
 ---
 
@@ -58,7 +49,6 @@
         vpc_id               = "vpc-12345678"
         subnet_ids           = ["subnet-aaaa", "subnet-bbbb"]
         region               = "us-east-1"
-        allowed_cidr_blocks  = ["10.0.0.0/16"]
         include_logs_endpoint = true
         include_kms_endpoint  = true
 

@@ -1,5 +1,5 @@
 output "endpoint_ids" {
-  value = { for k, ep in aws_vpc_endpoint.ssm_endpoints : k => ep.id }
+  value = { for k, ep in aws_vpc_endpoint.this : k => ep.id }
 }
 
 output "security_group_id" {

@@ -8,14 +8,13 @@ locals {
 
   optional_services = concat(
     var.include_logs_endpoint ? ["logs"] : [],
-    var.include_kms_endpoint  ? ["kms"]  : []
+    var.include_kms_endpoint ? ["kms"] : []
   )
 
   all_services = concat(local.base_services, local.optional_services)
 }
 
-
-resource "aws_vpc_endpoint" "ssm_endpoints" {
+resource "aws_vpc_endpoint" "this" {
   for_each = toset(local.all_services)
 
   vpc_id             = var.vpc_id
@@ -33,26 +32,11 @@ resource "aws_vpc_endpoint" "ssm_endpoints" {
 
 # Security Group para los Endpoints
 resource "aws_security_group" "this" {
-  name        = "ssm-endpoints-sg"
-  description = "Allow HTTPS for VPC endpoints"
+  name        = "sg-ssm-endpoints"
   vpc_id      = var.vpc_id
+  description = "Allow HTTPS ingress for VPC endpoints"
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    
-    # security group referencing: Solo permite conexiones entrantes desde EC2 con SSM que usan un SG específico
-    security_groups = [var.sg-id-ec2]
-    # cidr_blocks = var.allowed_cidr_blocks
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "sg-ssm-endpoints"
+  })
 }
