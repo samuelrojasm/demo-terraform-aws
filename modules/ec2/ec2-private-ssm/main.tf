@@ -4,10 +4,8 @@
 
 # Role para EC2 con acceso a SSM
 resource "aws_iam_role" "this" {
-  name = "ec2-ssm-role"
-  assume_role_policy = templatefile("${path.module}/assume-role-policy.tftpl", {
-    service = "ec2.amazonaws.com"
-  })
+  name               = "ec2-ssm-role"
+  assume_role_policy = templatefile("${path.module}/assume-role-policy.tftpl")
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
