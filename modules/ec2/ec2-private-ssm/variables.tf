@@ -41,3 +41,7 @@ variable "ami" {
   description = "Amazon Machine Image (AMI)"
   type        = string
 }
+
+variable "tags" {
+
+}

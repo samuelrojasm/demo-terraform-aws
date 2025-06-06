@@ -5,13 +5,8 @@
 # Role para EC2 con acceso a SSM
 resource "aws_iam_role" "this" {
   name = "ec2-ssm-role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect    = "Allow",
-      Principal = { Service = "ec2.amazonaws.com" },
-      Action    = "sts:AssumeRole"
-    }]
+  assume_role_policy = templatefile("${path.module}/assume-role-policy.tftpl", {
+    service = "ec2.amazonaws.com"
   })
 }
 
@@ -27,23 +22,13 @@ resource "aws_iam_instance_profile" "this" {
 
 # Security Group para EC2
 resource "aws_security_group" "this" {
-  name        = "ec2-private-sg"
+  name        = "sg-ec2-private"
   vpc_id      = var.vpc_id
   description = "Allow egress"
 
-  egress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "-1"
-    security_groups = [var.vpce_sg_id]
-    # cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name        = "ec2-private-sg"
-    Environment = var.environment
-    Project     = var.project
-  }
+  tags = merge(var.tags, {
+    Name = "sg-ec2-private-sg"
+  })
 }
 
 # EC2 privada
@@ -55,10 +40,7 @@ resource "aws_instance" "this" {
   iam_instance_profile        = aws_iam_instance_profile.this.name
   associate_public_ip_address = false
 
-  tags = {
-    Name        = "ec2-private-ssm"
-    Environment = var.environment
-    Project     = var.project
-    Purpose     = var.purpose
-  }
+  tags = merge(var.tags, {
+    Name = "ec2-private-ssm"
+  })
 }

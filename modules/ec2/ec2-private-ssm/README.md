@@ -24,11 +24,8 @@
 ---
 
 ## 🧱 Recursos creados
-- VPC
-- Subnets privadas
 - Una EC2 con rol SSM
     - Acceso a la EC2 solo vía SSM (sin NAT, sin IGW)
-- Llama al submódulo **vpc-endpoints-ssm**
 
 ---
 
@@ -77,5 +74,6 @@
 ---
 
 - [Terraform module to create AWS VPC resources](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest)
+- [Terraform templatefile Function](https://developer.hashicorp.com/terraform/language/functions/templatefile)
 
 ---
