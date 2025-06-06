@@ -4,16 +4,11 @@
 module "ec2_ssm" {
   source = "../ec2-private-ssm"
 
-  project       = var.project
-  environment   = var.environment
-  purpose       = var.purpose
   vpc_id        = var.vpc_id
-  subnet_id     = var.private_subnet_id
+  subnet_id     = var.subnet_id
   ami           = var.ami
   instance_type = var.instance_type
-  vpce_sg_id    = var.vpce_sg_id
   tags          = var.tags
-
 }
 
 module "vpce_ssm" {
@@ -24,4 +19,3 @@ module "vpce_ssm" {
   region             = var.region
   tags               = var.tags
 }
-

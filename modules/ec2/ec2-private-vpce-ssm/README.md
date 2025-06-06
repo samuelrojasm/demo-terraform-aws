@@ -18,15 +18,26 @@
 ---
 
 ## 🔧 Argumentos del módulo
-- Lista de argumentos
-
+- Lista de argumentos para el sub-módulo: **`ec2-private-ssm`**
 | Nombre                       | Tipo         | Valor Default  |
-|------------------------------|--------------|----------------|
-| `vpc_id`                     | string       | -              |               
+|------------------------------|--------------|----------------|          
+| `subnet_id`                  | string       | -              |             
+| `instance_type`              | string       |t3.micro        |
+| `ami`                        | string       |-               |
+
+
+- Lista de argumentos para el sub-módulo: **`vpc-endpoints-ssm`**
+| Nombre                       | Tipo         | Valor Default  |
+|------------------------------|--------------|----------------|   
 | `subnet_ids`                 | list(string) | -              |             
 | `region`                     | string       | -              |
 | `include_logs_endpoint`      | bool         |false           |
 | `include_kms_endpoint`       | bool         |false           |
+
+- Lista de argumentos comunes entre módulos
+| Nombre                       | Tipo         | Valor Default  |
+|------------------------------|--------------|----------------|
+| `vpc_id`                     | string       | -              |   
 | `tags`                       | map(string)  |{ }             |
 
 - Uso de Security Group Referencing

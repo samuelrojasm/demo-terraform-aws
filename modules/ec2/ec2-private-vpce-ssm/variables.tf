@@ -60,24 +60,6 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "project" {
-  description = "Nombre del proyecto"
-  type        = string
-  default     = "demo"
-}
-
-variable "environment" {
-  description = "Entorno (demo, lab, test, dev, prod)"
-  type        = string
-  default     = "lab"
-}
-
-variable "purpose" {
-  description = "Propósito de uso de los recursos"
-  type        = string
-  default     = "SSM-managed private EC2"
-}
-
 variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
