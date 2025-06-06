@@ -17,6 +17,7 @@ module "sg_rules_vpce" {
       source_security_group_id = module.ec2_ssm.sg_id
     }
   ]
+  egress_rules = ["all-all"]
 }
 
 # Uso del módulo oficial para crear regla egress en EC2 SG que permita salir hacia VPCE SG
@@ -33,4 +34,5 @@ module "sg_rules_ec2_egress" {
       source_security_group_id = module.vpce_ssm.sg_id
     }
   ]
+  ingress_rules = ["all-all"]
 }
