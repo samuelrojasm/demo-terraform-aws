@@ -8,13 +8,13 @@ module "sg_rules_vpce" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.3"
 
-    create_sg = false
-    security_group_id = module.vpce_ssm.sg_id
+  create_sg         = false
+  security_group_id = module.vpce_ssm.sg_id
   ingress_with_source_security_group_id = [
     {
-        description              = "Allow EC2 to connect to VPCE on HTTPS"
-        rule = "https-443-tcp"
-        source_security_group_id = module.ec2_ssm.sg_id
+      description              = "Allow EC2 to connect to VPCE on HTTPS"
+      rule                     = "https-443-tcp"
+      source_security_group_id = module.ec2_ssm.sg_id
     }
   ]
 }
@@ -24,13 +24,13 @@ module "sg_rules_ec2_egress" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.3"
 
-  create_sg = false
+  create_sg         = false
   security_group_id = module.ec2_ssm.sg_id
   egress_with_source_security_group_id = [
     {
-        description              = "Allow EC2 egress to VPCE on HTTPS"
-        rule = "https-443-tcp"
-        source_security_group_id = module.vpce_ssm.sg_id
+      description              = "Allow EC2 egress to VPCE on HTTPS"
+      rule                     = "https-443-tcp"
+      source_security_group_id = module.vpce_ssm.sg_id
     }
   ]
 }

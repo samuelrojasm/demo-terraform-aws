@@ -12,7 +12,7 @@ locals {
 
   optional_services = concat(
     var.include_logs_endpoint ? ["logs"] : [],
-    var.include_kms_endpoint  ? ["kms"]  : []
+    var.include_kms_endpoint ? ["kms"] : []
   )
 
   all_services = concat(local.base_services, local.optional_services)
