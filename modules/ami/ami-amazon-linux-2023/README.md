@@ -51,6 +51,201 @@
     ```
 ---
 
+## 📌 Llamada a parámetros públicos de AMI en Parameter Store
+### 1.- Primer paso investigar la estructura de las jerarquía de los Parámtros
+#### Ejemplos Amazon EKS – AMIs optimizadas
+- Especifica la versión de Kubernetes y el tipo de AMI que te interesa. 
+- Esto reducirá drásticamente la cantidad de resultados y hará que `--output table` sea viable.
+- Reemplazar `1.29` por la versión que estés usando en tu clúster EKS.
+- Con esto se puede visualizar la estructura **llave-valor** que contiene campo "Value" del Parámetro
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
+        --recursive \
+        --query "Parameters[*].[Name,Value]" \
+        --region us-east-1 \
+        --profile tf \
+        --output table
+    ```
+
+- JMESPath en el argumento --query:
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
+        --recursive \
+        --query 'Parameters[].{Name:Name, Value:Value}' \
+        --region us-east-1 \
+        --profile tf \
+        --output json
+    ```
+- Solo los que tengan en el Nombre del Parámetro image_id
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
+        --recursive \
+       --query "Parameters[?contains(Name, 'image_id')].[Name,Value]" \
+        --region us-east-1 \
+        --profile tf \
+        --output table
+    ```
+- Listar cierta cantidad de AMIs optimizadas para una versión de Kubernetes en particular
+     ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/eks/optimized-ami/1.29 \
+        --recursive \
+        --max-items 100 \
+        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
+        --region us-east-1 \
+        --profile tf \
+    ```
+#### Ejempo Amazon Linux - AMIs
+- AMIs publicadas en Parameter Store
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/ami-amazon-linux-latest \
+        --region us-west-2 \
+        --profile tf
+    ```
+- Lista el Valor dentro de Parameter Store
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/ami-amazon-linux-latest \
+        --recursive \
+        --query "Parameters[*].[Name,Value]" \
+        --region us-west-2 \
+        --profile tf \
+        --output table
+    ```
+#### Ejemplo ECS – AMIs optimizadas
+- Lista nombres de AMIs de amazon-linux-2023
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/ecs/optimized-ami/amazon-linux-2023 \
+        --recursive \
+        --query "Parameters[?contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+#### Ejempo Bottlerocket – para EKS
+- Listado de AMIs de Bottlerocket versión específica de K8
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/bottlerocket/aws-k8s-1.30 \
+        --recursive \
+        --max-items 500 \
+        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+- Búsqueda de AMIs Bottlerocket para una versión específica de K8
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/bottlerocket \
+        --recursive \
+        --query "Parameters[?contains(Name, 'aws-k8s-1.30') && contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+#### Ejempo Bottlerocket – para ECS
+- Búsqueda de AMIs Bottlerocket para ECS
+- Posibles categorías: aws-ecs-1, aws-k8s-X.YY, aws-dev
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/bottlerocket/aws-ecs-2 \
+        --recursive \
+        --query "Parameters[?contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+- Búsqueda de AMIs Bottlerocket para ECS con condicones específicas
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/bottlerocket/aws-k8s-1.30 \
+        --recursive \
+        --query "Parameters[?contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+#### Ejempo de bottlerocket para ECS – AMIs optimizadas
+    ```bash
+    aws ssm get-parameters-by-path \
+        --path /aws/service/bottlerocket \
+        --recursive \
+        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
+        --region us-west-2 \
+        --profile tf
+    ```
+
+###  2.- Segundo paso obtener el ID del AMI
+#### Ejempo AWS EKS AMI ID
+- Patrón de nombre de Parameter store
+    ``bash 
+    /aws/service/eks/optimized-ami/<kubernetes-version>/<ami-type>/recommended/image_id
+    ```
+- AMI ID de versión específica
+     ``bash 
+    aws ssm get-parameter \
+        --name /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64/standard/recommended/image_id \
+        --query "Parameter.Value" \
+        --output text \
+        --region us-west-2 \
+        --profile tf
+    ```
+#### Ejempo Amazon Linux AMI ID
+    ```bash 
+    aws ssm get-parameter \
+        --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 \
+        --query "Parameter.Value" \
+        --output text \
+        --region us-west-2 \
+        --profile tf
+    ```
+
+aws ssm get-parameters-by-path \
+         --path /aws/service/ami-amazon-linux-2023-latest/arm64 \
+        --recursive \
+        --region us-west-2 \
+        --profile tf
+
+
+
+#### Ejempo ECS - AMIs optimizadas
+- AMI ID recomendada para arquitectura x86_64
+    ```bash
+    aws ssm get-parameter \
+        --name /aws/service/ecs/optimized-ami/amazon-linux-2023/recommended/image_id \
+        --query "Parameter.Value" \
+        --output text \
+        --region us-west-2 \
+        --profile tf
+    ```
+- También se puede obtener el AMI ID de:
+    ```bash
+    "/aws/service/ecs/optimized-ami/amazon-linux-2023/gpu/recommended/image_id"
+    "/aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/recommended/image_id"
+    "/aws/service/ecs/optimized-ami/amazon-linux-2023/neuron/recommended/image_id"
+    ```
+#### Ejempo Bottlerocket AMI ID para K8
+    ```bash 
+    aws ssm get-parameter \
+        --name /aws/service/bottlerocket/aws-k8s-1.30/x86_64/latest/image_id \
+        --query "Parameter.Value" \
+        --output text \
+        --region us-west-2 \
+        --profile tf
+    ```
+#### Ejempo Bottlerocket AMI ID para ECS
+    ```bash 
+    aws ssm get-parameter \
+        --name /aws/service/bottlerocket/aws-ecs-2/x86_64/latest/image_id \
+        --query "Parameter.Value" \
+        --output text \
+        --region us-west-2 \
+        --profile tf
+    ```
+
+---
+ 
 ## 📚 Referencias
 - [Calling AMI public parameters in Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-public-parameters-ami.html)
 - [Reference the latest AMIs using Systems Manager public parameters](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami-parameter-store.html)
@@ -63,3 +258,11 @@
 - []()
 
 ---
+
+
+ aws ssm get-parameters-by-path \
+        --path /aws/service/eks/optimized-ami/1.29  \
+        --recursive \
+        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
+        --region us-east-1 \
+        --profile tf

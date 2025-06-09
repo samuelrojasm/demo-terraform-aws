@@ -1,44 +1,13 @@
-data "aws_ssm_parameter" "al2023" {
-  name = var.ssm_parameter_name
+# Se implementa la lógica para construir el nombre del parámetro y recuperar el ID de la AMI.
+# La ruta para la última AMI de Amazon Linux 2023 sigue un patrón como:
+# /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+# /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
+
+locals {
+  ssm_path = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-${var.architecture}"
 }
 
-data "aws_ami" "al2023_details" {
-  most_recent = false
-  owners      = ["137112412989"]
-
-  filter {
-    name   = "image-id"
-    values = [data.aws_ssm_parameter.al2023.value]
-  }
-}
-
-
-
-
-
-
-
-data "aws_ami" "this" {
-  most_recent = true
-  owners      = [var.owner] # AMI owner ID
-
-  filter {
-    name   = "name"
-    values = [var.name_prefix]
-  }
-
-  filter {
-    name   = "architecture"
-    values = [var.architecture]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
+# Obtener el valor del parámetro (que es el AMI ID) del Parameter Store.
+data "aws_ssm_parameter" "this" {
+  name = local.ssm_path
 }
