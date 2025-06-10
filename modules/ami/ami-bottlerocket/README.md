@@ -11,9 +11,20 @@
 
 ## 🔧 Variables del módulo
 
-| Nombre                | Tipo         | Valor Default         |
-|-----------------------|--------------|-----------------------|
-| `architecture`        | string       | x86_64                |
+| Nombre                | Tipo         | Valor Default         | Possible settings |
+|-----------------------|--------------|-----------------------|-------------------|                  
+| `orchestrator`        | string       | -                  | eks, ecs, ec2  |
+| `architecture`        | string       | x86_64                |  x86_64, arm64  |
+| `kubernetes_version`  | string       |                       | -   |
+| `gpu_support`         | bool      | false                     | true, false  |
+| `fips_support`         | bool      | false                      | true,false  |
+| `bottlerocket_variant_map`         | map      |base_prefix = "/aws/service/bottlerocket"
+                                                    eks_prefix  = "aws-k8s"
+                                                    ecs_prefix  = "aws-ecs-2" # Usamos aws-ecs-2 como la más común/reciente
+                                                    ec2_prefix  = "aws-dev" # aws-dev es una variante genérica para EC2
+                                                    gpu_suffix  = "-nvidia"
+                                                    fips_suffix = "-fips  | -  |
+
 
 ---
 
