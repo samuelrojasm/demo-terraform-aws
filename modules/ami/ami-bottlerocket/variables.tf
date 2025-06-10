@@ -22,17 +22,17 @@ variable "kubernetes_version" {
   description = "La versión de Kubernetes (solo si orchestrator es 'eks')."
   type        = string
   default     = null # Opcional, dependiendo de si siempre esperas un valor cuando orchestrator es 'eks'
-  
+
   validation {
     # Validación 1: Que la versión tenga el formato 'X.YY' si es EKS (ejemplo: 1.29)
     condition = var.orchestrator != "eks" || (
-        var.kubernetes_version != null &&
-        can(regex("^[0-9]+\\.[0-9]+$", var.kubernetes_version))
+      var.kubernetes_version != null &&
+      can(regex("^[0-9]+\\.[0-9]+$", var.kubernetes_version))
     )
     error_message = "Para 'eks', 'kubernetes_version' debe ser proporcionado y tener el formato 'X.YY'."
   }
 
-    validation {
+  validation {
     # Validación 2: Versión de Kubernetes > 1.26 si es EKS
     condition = var.orchestrator != "eks" || (
       length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
@@ -47,7 +47,7 @@ variable "kubernetes_version" {
     error_message = "Si el orquestador es 'eks', la versión de Kubernetes debe ser superior a 1.26 (ej. 1.27, 1.28, 1.29 o superior)."
   }
 
-    validation {
+  validation {
     # Validación 3: Si FIPS está habilitado y es EKS, la versión de Kubernetes debe ser >= 1.28
     # FIPS en Bottlerocket para EKS solo está disponible a partir de la versión 1.28 de Kubernetes (aws-k8s-1.28-fips)
     # Solo aplica si fips_support es true Y orchestrator es 'eks'
@@ -58,7 +58,7 @@ variable "kubernetes_version" {
         tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 || # Si la versión mayor es > 1
         (
           tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) == 1 && # Si la versión mayor es 1 Y
-          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) >= 28  # la versión menor es >= 28
+          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) >= 28   # la versión menor es >= 28
         )
       )
     )
@@ -90,11 +90,11 @@ variable "fips_support" {
 variable "bottlerocket_variant_map" {
   description = "Mapa que define los prefijos de las rutas de Bottlerocket por orquestador y otras características."
   type = map(object({
-    base_prefix        = string
-    eks_prefix         = string
-    ecs_prefix         = string
-    gpu_suffix         = string
-    fips_suffix        = string
+    base_prefix = string
+    eks_prefix  = string
+    ecs_prefix  = string
+    gpu_suffix  = string
+    fips_suffix = string
   }))
   # Valores predeterminados basados en las convenciones actuales de Bottlerocket
   default = {

@@ -6,8 +6,8 @@ locals {
 
   # Construir la parte específica del orquestador
   orchestrator_part = var.orchestrator == "eks" ? "${local.variants.eks_prefix}-${var.kubernetes_version}" : local.variants.ecs_prefix
-        
-  
+
+
   # Construir los sufijos adicionales (GPU, FIPS)
   gpu_suffix  = var.gpu_support ? local.variants.gpu_suffix : ""
   fips_suffix = var.fips_support ? local.variants.fips_suffix : ""
