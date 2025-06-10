@@ -119,7 +119,6 @@ output "eks_al2023_neuron_ssm_path" {
 #### Ejempo AWS EKS AMI ID
 - Patrón de nombre de Parameter store
      ```bash
-    /aws/service/eks/optimized-ami/<kubernetes-version>/<ami-type>/recommended/image_id
     /aws/service/eks/optimized-ami/<KUBERNETES_VERSION>/<AMI_FAMILY>/<ARCHITECTURE>/<AMI_TYPE>/recommended/image_id
     ```
 - AMI ID de versión específica
