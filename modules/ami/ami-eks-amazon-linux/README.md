@@ -102,7 +102,7 @@ output "eks_al2023_neuron_ssm_path" {
         --output table
     ```
 - Listar cierta cantidad de AMIs optimizadas para una versión de Kubernetes en particular
-     ```bash
+    ```bash
     aws ssm get-parameters-by-path \
         --path /aws/service/eks/optimized-ami/1.29 \
         --recursive \
@@ -115,11 +115,11 @@ output "eks_al2023_neuron_ssm_path" {
 ###  2.- Segundo paso obtener el ID del AMI
 #### Ejempo AWS EKS AMI ID
 - Patrón de nombre de Parameter store
-    ``bash 
+    ``bash
     /aws/service/eks/optimized-ami/<kubernetes-version>/<ami-type>/recommended/image_id
     ```
 - AMI ID de versión específica
-     ``bash 
+    ```bash
     aws ssm get-parameter \
         --name /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64/standard/recommended/image_id \
         --query "Parameter.Value" \
