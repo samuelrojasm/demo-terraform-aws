@@ -1,7 +1,7 @@
 # Definimos las entradas que aceptará el módulo
 
 variable "orchestrator" {
-  description = "El orquestador para el que se necesita la AMI (e.g., 'eks', 'ecs', 'ec2')."
+  description = "El orquestador para el que se necesita la AMI (e.g., 'eks', 'ecs')."
   type        = string
   validation {
     condition     = contains(["eks", "ecs"], var.orchestrator)
@@ -12,6 +12,7 @@ variable "orchestrator" {
 variable "architecture" {
   description = "La arquitectura de la AMI ('x86_64', 'arm64')."
   type        = string
+  default = "x86_64"
   validation {
     condition     = contains(["x86_64", "arm64"], var.architecture)
     error_message = "La arquitectura debe ser 'x86_64' o 'arm64'."
@@ -38,17 +39,19 @@ variable "kubernetes_version" {
     error_message = "La versión de Kubernetes debe tener el formato 'X.YY' (e.g., '1.29')."
   }
 
-  # Validación 2: Versión de Kubernetes > 1.26 si es EKS
+  # Validación 3: Versión de Kubernetes > 1.26 si es EKS
   validation {
     condition = var.orchestrator != "eks" || (
-      var.kubernetes_version != null && # Reconfirmación que no es null, para seguridad
-      length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
-      (
-        tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 ||
+      try(
+        length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
         (
-          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) == 1 &&
-          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) > 26
-        )
+            tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 ||
+            (
+                tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) == 1 &&
+                tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) > 26
+            )
+        ), 
+        false # Si algo dentro del 'try' falla (ej. kubernetes_version es null), devuelve false.
       )
     )
     error_message = "Si el orquestador es 'eks', la versión de Kubernetes debe ser superior a 1.26 (ej. 1.27, 1.28, 1.29 o superior)."
@@ -59,15 +62,16 @@ variable "kubernetes_version" {
   # Solo aplica si fips_support es true Y orchestrator es 'eks'
   validation {
     condition = !(var.fips_support && var.orchestrator == "eks") || (
-      var.kubernetes_version != null &&
-      length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
-      (
-        tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 || # Si la versión mayor es > 1
-        (
-          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) == 1 && # Si la versión mayor es 1 Y
-          tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) >= 28   # la versión menor es >= 28
+        try(
+            length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
+            (
+                tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 || # Si la versión mayor es > 1
+                (
+                    tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) == 1 && # Si la versión mayor es 1 Y
+                    tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][1]) >= 28   # la versión menor es >= 28
+                )
+            ), false # Si algo dentro del 'try' falla, devuelve false.
         )
-      )
     )
     error_message = "Para Bottlerocket EKS FIPS, la versión de Kubernetes debe ser 1.28 o superior (ej. '1.28', '1.29')."
   }

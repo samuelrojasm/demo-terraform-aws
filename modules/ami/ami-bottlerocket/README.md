@@ -65,6 +65,20 @@ output "ssm_path_ecs_x86_64" {
 
 ---
 
+## Probar módulo local
+- Desde el directorio raíz del proyecto Terraform
+```bash
+terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.29"
+
+
+terraform plan -var="orchestrator=ecs" -var="fips_support=true" -var="gpu_support=true"
+terraform plan -var="orchestrator=ecs" -var="fips_support=true"
+```
+- Usando archivo .tfvars
+```bash
+terraform plan -var-file="test.tfvars"
+```
+
 ## 📌 Llamada a parámetros públicos de AMI en Parameter Store
 ### 1.- Primer paso investigar la estructura de las jerarquía de los Parámetros
 #### Ejempo Bottlerocket – para EKS
