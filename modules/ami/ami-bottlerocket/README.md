@@ -1,4 +1,4 @@
-## 🛠️ Terraform - Módulo - AMI de bottlerocket optimizada para Amazon EKS,EC2 y EC
+## 🛠️ Terraform - Módulo - AMI de bottlerocket optimizada para Amazon EKS y ECS
 
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?logo=amazon-web-services&logoColor=white)](#)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
