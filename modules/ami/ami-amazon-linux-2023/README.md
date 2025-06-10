@@ -87,22 +87,22 @@ output "al2023_arm64_ssm_path" {
 
 ###  2.- Segundo paso obtener el ID del AMI
 #### Ejempo Amazon Linux AMI ID
-    ```bash 
-    aws ssm get-parameter \
-        --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 \
-        --query "Parameter.Value" \
-        --output text \
-        --region us-west-2 \
-        --profile tf
-    ```
+```bash 
+aws ssm get-parameter \
+  --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 \
+  --query "Parameter.Value" \
+  --output text \
+  --region us-west-2 \
+  --profile tf
+```
 
-    ```bash
-    aws ssm get-parameter \
-         --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64 \
-        --query "Parameter.Value" \
-        --region us-west-2 \
-        --profile tf
-    ```
+```bash
+aws ssm get-parameter \
+  --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64 \
+  --query "Parameter.Value" \
+  --region us-west-2 \
+  --profile tf
+```
 
 #### Ejempo ECS - AMIs optimizadas
 - AMI ID recomendada para arquitectura x86_64
