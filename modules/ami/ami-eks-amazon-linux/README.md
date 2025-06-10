@@ -24,6 +24,7 @@
 ```hcl
 module "eks_al2023_standard_ami" {
   source = "./modules/ami-eks-amazon-linux"
+  kubernetes_version = "1.29"
   ami_type = "standard"
 }
 
@@ -38,6 +39,7 @@ output "eks_al2023_standard_ssm_path" {
 ```hcl
 module "eks_al2023_nvidia_ami" {
   source = "./modules/ami-eks-amazon-linux"
+  kubernetes_version = "1.29"
   ami_type = "nvidia"
 }
 
@@ -52,7 +54,8 @@ output "eks_al2023_nvidia_ssm_path" {
 ```hcl
 module "eks_al2023_neuron_ami" {
   source = "./modules/ami_eks_amazon_linux"
-  ami_flavor = "neuron"
+  kubernetes_version = "1.29"
+  ami_type = "neuron"
 }
 
 output "eks_al2023_neuron_ami_id" {
@@ -66,7 +69,7 @@ output "eks_al2023_neuron_ssm_path" {
 ---
 
 ## 📌 Llamada a parámetros públicos de AMI en Parameter Store
-### 1.- Primer paso investigar la estructura de las jerarquía de los Parámtros
+### 1.- Primer paso investigar la estructura de las jerarquía de los Parámetros
 #### Ejemplos Amazon EKS – AMIs optimizadas
 - Especifica la versión de Kubernetes y el tipo de AMI que te interesa. 
 - Esto reducirá drásticamente la cantidad de resultados y hará que `--output table` sea viable.
@@ -115,8 +118,9 @@ output "eks_al2023_neuron_ssm_path" {
 ###  2.- Segundo paso obtener el ID del AMI
 #### Ejempo AWS EKS AMI ID
 - Patrón de nombre de Parameter store
-    ``bash
+     ```bash
     /aws/service/eks/optimized-ami/<kubernetes-version>/<ami-type>/recommended/image_id
+    /aws/service/eks/optimized-ami/<KUBERNETES_VERSION>/<AMI_FAMILY>/<ARCHITECTURE>/<AMI_TYPE>/recommended/image_id
     ```
 - AMI ID de versión específica
     ```bash
