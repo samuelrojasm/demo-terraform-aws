@@ -66,7 +66,7 @@ output "ssm_path_ecs_x86_64" {
 ---
 
 ## 📌 Llamada a parámetros públicos de AMI en Parameter Store
-### 1.- Primer paso investigar la estructura de las jerarquía de los Parámtros
+### 1.- Primer paso investigar la estructura de las jerarquía de los Parámetros
 #### Ejempo Bottlerocket – para EKS
 - Listado de AMIs de Bottlerocket versión específica de K8
     ```bash
@@ -142,7 +142,7 @@ output "ssm_path_ecs_x86_64" {
 
 ---
 
-## Ejemplos de rutas de Paramter Store
+## Ejemplos de rutas de Parameter Store
 ### Bottlerocket K8 - Arquitectura
 ```bash 
 /aws/service/bottlerocket/aws-k8s-1.30/arm64/latest/image_id
