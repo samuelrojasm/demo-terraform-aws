@@ -23,18 +23,25 @@ variable "kubernetes_version" {
   type        = string
   default     = null # Opcional, dependiendo de si siempre esperas un valor cuando orchestrator es 'eks'
 
+  # Validación 1: Asegurar que no es NULL si es eks
   validation {
-    # Validación 1: Que la versión tenga el formato 'X.YY' si es EKS (ejemplo: 1.29)
-    condition = var.orchestrator != "eks" || (
-      var.kubernetes_version != null &&
-      can(regex("^[0-9]+\\.[0-9]+$", var.kubernetes_version))
-    )
-    error_message = "Para 'eks', 'kubernetes_version' debe ser proporcionado y tener el formato 'X.YY'."
+    condition     = var.orchestrator != "eks" || var.kubernetes_version != null
+    error_message = "Para 'eks', 'kubernetes_version' debe ser proporcionado y no puede ser nulo."
   }
 
+  # Validación 2: Formato correcto, si orchestrator es 'eks'
+  # Usamos try() para evitar errores si kubernetes_version es null aquí
   validation {
-    # Validación 2: Versión de Kubernetes > 1.26 si es EKS
     condition = var.orchestrator != "eks" || (
+      try(can(regex("^[0-9]+\\.[0-9]+$", var.kubernetes_version)), false)
+    )
+    error_message = "La versión de Kubernetes debe tener el formato 'X.YY' (e.g., '1.29')."
+  }
+
+  # Validación 2: Versión de Kubernetes > 1.26 si es EKS
+  validation {
+    condition = var.orchestrator != "eks" || (
+      var.kubernetes_version != null && # Reconfirmación que no es null, para seguridad
       length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
       (
         tonumber(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)[0][0]) > 1 ||
@@ -47,10 +54,10 @@ variable "kubernetes_version" {
     error_message = "Si el orquestador es 'eks', la versión de Kubernetes debe ser superior a 1.26 (ej. 1.27, 1.28, 1.29 o superior)."
   }
 
+  # Validación 4: Si FIPS está habilitado y es EKS, la versión de Kubernetes debe ser >= 1.28
+  # FIPS en Bottlerocket para EKS solo está disponible a partir de la versión 1.28 de Kubernetes (aws-k8s-1.28-fips)
+  # Solo aplica si fips_support es true Y orchestrator es 'eks'
   validation {
-    # Validación 3: Si FIPS está habilitado y es EKS, la versión de Kubernetes debe ser >= 1.28
-    # FIPS en Bottlerocket para EKS solo está disponible a partir de la versión 1.28 de Kubernetes (aws-k8s-1.28-fips)
-    # Solo aplica si fips_support es true Y orchestrator es 'eks'
     condition = !(var.fips_support && var.orchestrator == "eks") || (
       var.kubernetes_version != null &&
       length(regexall("^([0-9]+)\\.([0-9]+)$", var.kubernetes_version)) > 0 &&
