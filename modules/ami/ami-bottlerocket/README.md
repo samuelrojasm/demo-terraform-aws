@@ -62,23 +62,6 @@ output "ssm_path_ecs_x86_64" {
   value = module.bottlerocket_ami_ecs_x86_64.ssm_parameter_path
 }
 ```
-### --- Ejemplo para EC2 genérico (dev) con X86_64 ---
-```hcl
-module "bottlerocket_ami_ec2_x86_64" {
-  source = "./modules/bottlerocket_ami"
-
-  orchestrator = "ec2"
-  architecture = "x86_64"
-}
-
-output "ami_id_ec2_x86_64" {
-  value = module.bottlerocket_ami_ec2_x86_64.ami_id
-}
-
-output "ssm_path_ec2_x86_64" {
-  value = module.bottlerocket_ami_ec2_x86_64.ssm_parameter_path
-}
-```
 
 ---
 
