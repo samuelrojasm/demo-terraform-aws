@@ -14,9 +14,9 @@
 
 | Nombre                    | Tipo   | Valor Default | Possible settings |
 |---------------------------|------- |---------------|-------------------|                  
-| `orchestrator`            | string | -             | eks, ecs, ec2     |
-| `architecture`            | string | x86_64        |  x86_64, arm64    |
-| `kubernetes_version`      | string |               | -                 |
+| `orchestrator`            | string | -             | eks, ecs          |
+| `architecture`            | string | x86_64        | x86_64, arm64    |
+| `kubernetes_version`      | string | Null          | -                 |
 | `gpu_support`             | bool   | false         | true, false       |
 | `fips_support`            | bool   | false         | true,false        |
 | `bottlerocket_variant_map`| map    | base_prefix = "/aws/service/bottlerocket" <br> eks_prefix  = "aws-k8s" <br> ecs_prefix  = "aws-ecs-2" # La más común/reciente <br> gpu_suffix  = "-nvidia" <br> fips_suffix = "-fips  | -  |
@@ -69,6 +69,7 @@ output "ssm_path_ecs_x86_64" {
 - Desde el directorio raíz del proyecto Terraform
 ```bash
 terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.29"
+terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.29" -var="architecture=arm64"
 terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.33" -var="fips_support=true"
 terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.33" -var="gpu_support=true"
 ```
