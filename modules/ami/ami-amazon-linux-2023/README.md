@@ -7,13 +7,8 @@
 ## 🎯 Objetivo (Target)
 - Para usar **Amazon Linux 2023 (AL2023)** en Terraform, lo recomendable es obtener la AMI de forma dinámica usando el data source aws_ami, ya que los IDs cambian según la región y el tiempo.
 - Obtener dinámicamente la última **AMI de Amazon Linux 2023**, con soporte para arquitectura (x86_64 o arm64) y región.
-
----
-
-## Notas
-- 137112412989 es el owner ID oficial de Amazon Linux.
-- Puedes cambiar "x86_64" por "arm64" si usas instancias Graviton.
-- Este método es multi-región.
+- Utiliza el kernel predeterminado que Amazon considera estable en ese momento.
+- Ideal si quieres automatizar usando **"la última versión recomendada"** sin preocuparte por detalles del kernel.
 
 ---
 
@@ -22,82 +17,45 @@
 | Nombre                | Tipo         | Valor Default         |
 |-----------------------|--------------|-----------------------|
 | `architecture`        | string       | x86_64                |
-| `owner`               | string       | 137112412989          |
-| `name_prefix`         | string       | al2023-ami-*-*"       |
 
 ---
 
 ## 🧪 Ejemplo de uso (main.tf del root project)
-- Llamada al módulo y uso del resultado
-    ```hcl
-    module "al2023" {
-        source      = "./modules/amazon-linux-2023"
-        architecture = "x86_64"
-    }
+### --- Ejemplo de uso para obtener la última AMI de Amazon Linux 2023 (x86_64) ---
+```hcl
+module "latest_al2023_x86_64_ami" {
+  source = "./modules/ami-amazon-linux-2023"
+  # architecture se usará el valor por defecto "x86_64" si no se especifica.
+}
 
-    resource "aws_instance" "this" {
-        ami                    = module.al2023.ami_id
-        instance_type          = "t3.micro"
-        subnet_id              = var.subnet_id
-        vpc_security_group_ids = [aws_security_group.this.id]
+output "al2023_x86_64_ami_id" {
+  value = module.latest_al2023_x86_64_ami.ami_id
+}
 
-        iam_instance_profile        = aws_iam_instance_profile.this.name
-        associate_public_ip_address     = false
+output "al2023_x86_64_ssm_path" {
+  value = module.latest_al2023_x86_64_ami.ssm_parameter_path
+}
+```
+### --- Ejemplo de uso para obtener la última AMI de Amazon Linux 2023 (arm64) ---
+```hcl
+module "latest_al2023_arm64_ami" {
+  source = "./modules/ami-amazon-linux-2023"
+  architecture = "arm64"
+}
 
-        tags = {
-            Name = "ec2-amazon-linux-2023"
-        }
-    }
-    ```
+output "al2023_arm64_ami_id" {
+  value = module.latest_al2023_arm64_ami.ami_id
+}
+
+output "al2023_arm64_ssm_path" {
+  value = module.latest_al2023_arm64_ami.ssm_parameter_path
+}
+```
+
 ---
 
 ## 📌 Llamada a parámetros públicos de AMI en Parameter Store
 ### 1.- Primer paso investigar la estructura de las jerarquía de los Parámtros
-#### Ejemplos Amazon EKS – AMIs optimizadas
-- Especifica la versión de Kubernetes y el tipo de AMI que te interesa. 
-- Esto reducirá drásticamente la cantidad de resultados y hará que `--output table` sea viable.
-- Reemplazar `1.29` por la versión que estés usando en tu clúster EKS.
-- Con esto se puede visualizar la estructura **llave-valor** que contiene campo "Value" del Parámetro
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
-        --recursive \
-        --query "Parameters[*].[Name,Value]" \
-        --region us-east-1 \
-        --profile tf \
-        --output table
-    ```
-
-- JMESPath en el argumento --query:
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
-        --recursive \
-        --query 'Parameters[].{Name:Name, Value:Value}' \
-        --region us-east-1 \
-        --profile tf \
-        --output json
-    ```
-- Solo los que tengan en el Nombre del Parámetro image_id
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64 \
-        --recursive \
-       --query "Parameters[?contains(Name, 'image_id')].[Name,Value]" \
-        --region us-east-1 \
-        --profile tf \
-        --output table
-    ```
-- Listar cierta cantidad de AMIs optimizadas para una versión de Kubernetes en particular
-     ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/eks/optimized-ami/1.29 \
-        --recursive \
-        --max-items 100 \
-        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
-        --region us-east-1 \
-        --profile tf \
-    ```
 #### Ejempo Amazon Linux - AMIs
 - AMIs publicadas en Parameter Store
     ```bash
@@ -177,20 +135,6 @@
     ```
 
 ###  2.- Segundo paso obtener el ID del AMI
-#### Ejempo AWS EKS AMI ID
-- Patrón de nombre de Parameter store
-    ``bash 
-    /aws/service/eks/optimized-ami/<kubernetes-version>/<ami-type>/recommended/image_id
-    ```
-- AMI ID de versión específica
-     ``bash 
-    aws ssm get-parameter \
-        --name /aws/service/eks/optimized-ami/1.29/amazon-linux-2023/x86_64/standard/recommended/image_id \
-        --query "Parameter.Value" \
-        --output text \
-        --region us-west-2 \
-        --profile tf
-    ```
 #### Ejempo Amazon Linux AMI ID
     ```bash 
     aws ssm get-parameter \
@@ -201,13 +145,13 @@
         --profile tf
     ```
 
-aws ssm get-parameters-by-path \
-         --path /aws/service/ami-amazon-linux-2023-latest/arm64 \
-        --recursive \
+    ```bash
+    aws ssm get-parameter \
+         --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64 \
+        --query "Parameter.Value" \
         --region us-west-2 \
         --profile tf
-
-
+    ```
 
 #### Ejempo ECS - AMIs optimizadas
 - AMI ID recomendada para arquitectura x86_64
@@ -251,18 +195,5 @@ aws ssm get-parameters-by-path \
 - [Reference the latest AMIs using Systems Manager public parameters](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami-parameter-store.html)
 - [Resource: aws_ssm_parameter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter)
 - [Receive notifications on new updates](https://docs.aws.amazon.com/linux/al2023/ug/receive-update-notification.html)
-- []()
-- []()
-- []()
-- []()
-- []()
 
 ---
-
-
- aws ssm get-parameters-by-path \
-        --path /aws/service/eks/optimized-ami/1.29  \
-        --recursive \
-        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
-        --region us-east-1 \
-        --profile tf
