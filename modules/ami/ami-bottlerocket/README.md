@@ -69,10 +69,13 @@ output "ssm_path_ecs_x86_64" {
 - Desde el directorio raíz del proyecto Terraform
 ```bash
 terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.29"
-
-
-terraform plan -var="orchestrator=ecs" -var="fips_support=true" -var="gpu_support=true"
+terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.33" -var="fips_support=true"
+terraform plan -var="orchestrator=eks" -var="kubernetes_version=1.33" -var="gpu_support=true"
+```
+```bash
+terraform plan -var="orchestrator=ecs"
 terraform plan -var="orchestrator=ecs" -var="fips_support=true"
+terraform plan -var="orchestrator=ecs" -var="gpu_support=true"
 ```
 - Usando archivo .tfvars
 ```bash
