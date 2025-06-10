@@ -78,7 +78,8 @@ output "al2023_x86_64_ssm_path" {
         --region us-west-2 \
         --profile tf
     ```
-#### Ejempo de bottlerocket para ECS – AMIs optimizadas
+#### Ejempo de bottlerocket – AMIs optimizadas
+- Explorar los Parameter Store de bottlerocket
     ```bash
     aws ssm get-parameters-by-path \
         --path /aws/service/bottlerocket \
@@ -90,6 +91,7 @@ output "al2023_x86_64_ssm_path" {
 
 ###  2.- Segundo paso obtener el ID del AMI
 #### Ejempo Bottlerocket AMI ID para K8
+- Obtiene el AMI ID de Bottlerocket para K8
     ```bash 
     aws ssm get-parameter \
         --name /aws/service/bottlerocket/aws-k8s-1.30/x86_64/latest/image_id \
@@ -99,6 +101,7 @@ output "al2023_x86_64_ssm_path" {
         --profile tf
     ```
 #### Ejempo Bottlerocket AMI ID para ECS
+- Obtiene el AMI ID de Bottlerocket para ECS
     ```bash 
     aws ssm get-parameter \
         --name /aws/service/bottlerocket/aws-ecs-2/x86_64/latest/image_id \
