@@ -84,55 +84,6 @@ output "al2023_arm64_ssm_path" {
         --region us-west-2 \
         --profile tf
     ```
-#### Ejempo Bottlerocket – para EKS
-- Listado de AMIs de Bottlerocket versión específica de K8
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/bottlerocket/aws-k8s-1.30 \
-        --recursive \
-        --max-items 500 \
-        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
-        --region us-west-2 \
-        --profile tf
-    ```
-- Búsqueda de AMIs Bottlerocket para una versión específica de K8
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/bottlerocket \
-        --recursive \
-        --query "Parameters[?contains(Name, 'aws-k8s-1.30') && contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
-        --region us-west-2 \
-        --profile tf
-    ```
-#### Ejempo Bottlerocket – para ECS
-- Búsqueda de AMIs Bottlerocket para ECS
-- Posibles categorías: aws-ecs-1, aws-k8s-X.YY, aws-dev
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/bottlerocket/aws-ecs-2 \
-        --recursive \
-        --query "Parameters[?contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
-        --region us-west-2 \
-        --profile tf
-    ```
-- Búsqueda de AMIs Bottlerocket para ECS con condicones específicas
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/bottlerocket/aws-k8s-1.30 \
-        --recursive \
-        --query "Parameters[?contains(Name, 'x86_64') && contains(Name, 'image_id')].[Name]" \
-        --region us-west-2 \
-        --profile tf
-    ```
-#### Ejempo de bottlerocket para ECS – AMIs optimizadas
-    ```bash
-    aws ssm get-parameters-by-path \
-        --path /aws/service/bottlerocket \
-        --recursive \
-        --query "Parameters[?contains(Name, 'image_id')].[Name]" \
-        --region us-west-2 \
-        --profile tf
-    ```
 
 ###  2.- Segundo paso obtener el ID del AMI
 #### Ejempo Amazon Linux AMI ID
@@ -169,25 +120,6 @@ output "al2023_arm64_ssm_path" {
     "/aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/recommended/image_id"
     "/aws/service/ecs/optimized-ami/amazon-linux-2023/neuron/recommended/image_id"
     ```
-#### Ejempo Bottlerocket AMI ID para K8
-    ```bash 
-    aws ssm get-parameter \
-        --name /aws/service/bottlerocket/aws-k8s-1.30/x86_64/latest/image_id \
-        --query "Parameter.Value" \
-        --output text \
-        --region us-west-2 \
-        --profile tf
-    ```
-#### Ejempo Bottlerocket AMI ID para ECS
-    ```bash 
-    aws ssm get-parameter \
-        --name /aws/service/bottlerocket/aws-ecs-2/x86_64/latest/image_id \
-        --query "Parameter.Value" \
-        --output text \
-        --region us-west-2 \
-        --profile tf
-    ```
-
 ---
  
 ## 📚 Referencias
