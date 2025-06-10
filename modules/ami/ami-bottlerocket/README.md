@@ -1,4 +1,4 @@
-## 🛠️ Terraform - Módulo - MI de Amazon Linux optimizada para Amazon EKS
+## 🛠️ Terraform - Módulo - AMI de bottlerocket optimizada para Amazon EKS,EC2 y EC
 
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?logo=amazon-web-services&logoColor=white)](#)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
@@ -18,11 +18,11 @@
 | `kubernetes_version`  | string       |                       | -   |
 | `gpu_support`         | bool      | false                     | true, false  |
 | `fips_support`         | bool      | false                      | true,false  |
-| `bottlerocket_variant_map`         | map      |base_prefix = "/aws/service/bottlerocket"
-                                                    eks_prefix  = "aws-k8s"
-                                                    ecs_prefix  = "aws-ecs-2" # Usamos aws-ecs-2 como la más común/reciente
-                                                    ec2_prefix  = "aws-dev" # aws-dev es una variante genérica para EC2
-                                                    gpu_suffix  = "-nvidia"
+| `bottlerocket_variant_map`         | map      |base_prefix = "/aws/service/bottlerocket" \
+                                                    eks_prefix  = "aws-k8s" \
+                                                    ecs_prefix  = "aws-ecs-2" # Usamos aws-ecs-2 como la más común/reciente \
+                                                    ec2_prefix  = "aws-dev" # aws-dev es una variante genérica para EC2 \
+                                                    gpu_suffix  = "-nvidia" \
                                                     fips_suffix = "-fips  | -  |
 
 
