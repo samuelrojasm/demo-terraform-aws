@@ -18,7 +18,12 @@
 | `kubernetes_version`  | string       |                       | -   |
 | `gpu_support`         | bool      | false                     | true, false  |
 | `fips_support`         | bool      | false                      | true,false  |
-| `bottlerocket_variant_map`         | map      | base_prefix = "/aws/service/bottlerocket" <br> eks_prefix  = "aws-k8s" \ ecs_prefix  = "aws-ecs-2" # Usamos aws-ecs-2 como la más común/reciente \ ec2_prefix  = "aws-dev" # aws-dev es una variante genérica para EC2 \ gpu_suffix  = "-nvidia" fips_suffix = "-fips  | -  |
+| `bottlerocket_variant_map`         | map      | base_prefix = "/aws/service/bottlerocket" <br>
+                                                  eks_prefix  = "aws-k8s" <br>
+                                                  ecs_prefix  = "aws-ecs-2" # Usamos aws-ecs-2 como la más común/reciente <br>
+                                                  ec2_prefix  = "aws-dev" # aws-dev es una variante genérica para EC2 <br>
+                                                  gpu_suffix  = "-nvidia" <br>
+                                                  fips_suffix = "-fips  | -  |
 
 
 ---
