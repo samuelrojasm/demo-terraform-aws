@@ -209,5 +209,9 @@ terraform plan -var-file="test.tfvars"
 - [Bottlerocket](https://aws.amazon.com/bottlerocket)
 - [Bottlerocket Documentation](https://bottlerocket.dev/en/)
 - [GitHub-Bottlerocket OS](https://github.com/bottlerocket-os/bottlerocket)
+- [Bottlerocket Admin Container](https://github.com/bottlerocket-os/bottlerocket-admin-container)
+- [Bottlerocket Control Container](https://github.com/bottlerocket-os/bottlerocket-control-container)
+- [Bottlerocket ECS Updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater)
+- [Retrieve recommended Bottlerocket AMI IDs](https://docs.aws.amazon.com/eks/latest/userguide/retrieve-ami-id-bottlerocket.html)
 
 ---
