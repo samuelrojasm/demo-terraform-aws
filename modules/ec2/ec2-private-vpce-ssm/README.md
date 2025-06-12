@@ -23,7 +23,7 @@
 
 ---
 
-## 🧱 Recursos creados
+## ⚙️ Recursos creados
 - Una instancia EC2 privada:
     - Basada en Amazon Linux 2023
     - Con SSM Agent
@@ -37,7 +37,7 @@
 
 ---
 
-## ⚙️ Módulos usados
+## 🧩 Módulos usados
 ```bash
 ├── main.tf (módulo root)
 │   │
