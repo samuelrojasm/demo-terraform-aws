@@ -1,6 +1,10 @@
-#-----------------------------------------
-# modules/ec2/ec2-private-vpce-ssm/main.tf
-#-----------------------------------------
+#-----------------------------------------------
+# Path: modules/ec2/ec2-private-vpce-ssm/main.tf
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Módulo:ec2-private-ssm (Crea EC2 con SSM)
+#-----------------------------------------------
 module "ec2_ssm" {
   source = "../ec2-private-ssm"
 
@@ -11,11 +15,14 @@ module "ec2_ssm" {
   tags          = var.tags
 }
 
+#-----------------------------------------------
+# Módulo:vpc-endpoints-ssm (Crea VPC Endpoints)
+#-----------------------------------------------
 module "vpce_ssm" {
-  source = "../../vpc/vpce-ssm"
+  source = "../../vpc/vpc-endpoints-ssm"
 
-  vpc_id             = var.vpc_id
-  private_subnet_ids = var.private_subnet_ids
-  region             = var.region
-  tags               = var.tags
+  region     = var.region
+  vpc_id     = var.vpc_id
+  subnet_ids = var.subnet_ids
+  tags       = var.tags
 }
