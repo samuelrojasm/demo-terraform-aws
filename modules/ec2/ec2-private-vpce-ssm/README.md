@@ -5,15 +5,35 @@
 
 ## 🎯 Objetivo
 - Agrupar EC2 + VPC Endpoint en un solo módulo
+- Provisionar una instancia EC2 privada junto con los VPC Endpoints necesarios para acceder a la EC2 mediante AWS Systems Manager (SSM), sin requerir acceso público ni llaves SSH.
+- Está diseñado para entornos seguros donde se requiere administración remota de instancias privadas a través de SSM, utilizando endpoints de tipo Interface para los servicios de SSM, EC2 Messages y otros relacionados.
 
 --
 
 ## 🧱 Recursos creados
-- SG para EC2
-- SG para VPCE
-- EC2 con IAM y SSM Agent
-- VPCEs de SSM (ssm, ssmmessages, ec2messages)
-- Asociar SGs entre ellos con **rules** del submódulo oficial
+- Una instancia EC2 privada:
+    - Basada en Amazon Linux 2023
+    - Con SSM Agent
+    - Asociación automática de la instancia EC2 con un IAM Role compatible con SSM
+- Los VPC Endpoints de tipo Interface necesarios para el funcionamiento completo de SSM:
+    - ssm
+    - ssmmessages
+    - ec2messages
+- Un Security Group configurado adecuadamente para permitir el tráfico entre la EC2 y los VPC Endpoints:
+    - Asociar SGs entre ellos con **rules** del submódulo oficial
+
+---
+
+## Módulos usados
+```bash
+├── main.tf (módulo root)
+│   │
+│   ├── módulo: ec2-private-ssm
+│   │   └── Crea la EC2 con SSM
+│   │
+│   ├── módulo: vpce-ssm
+│   │   └── Crea los VPC Endpoints
+```
 
 ---
 
@@ -51,9 +71,21 @@
 
 ## 🧪 Ejemplo de uso (main.tf del root project)
 - Llamada al módulo
-    ```hcl
+```hcl
+module "lab_ssm_ec2_private" {
+    source = "module/ec2/ec2-private-vpce-ssm"
 
-    ```
+    vpc_id               = module.vpc.id
+    private_subnet_ids   = module.vpc.private_subnets
+    instance_name        = "ssm-admin"
+    instance_type        = "t3.micro"
+    ssm_instance_profile = module.ssm_role.iam_instance_profile_name
+    tags = {
+        Project = "eks-lab"
+        Env     = "dev"
+    }
+}
+```
 
 ---
 
