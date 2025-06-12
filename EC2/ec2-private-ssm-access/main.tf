@@ -43,13 +43,13 @@ module "ec2_ssm" {
   subnet_id           = var.private_subnet_ids[0].id
   subnet_ids          = var.vpc.subnet_ids
   allowed_cidr_blocks = var.private_subnet_cidrs
-  ami                 = latest_al2023_x86_64_ami.ami_id
+  ami                 = module.latest_al2023_x86_64_ami.ami_id
   sg-id-ec2           = ""
   tags                = local.tags
 }
 
 # ------------------------------------------------
-# Módulo: ami-ec2 (Amazon Linux 2023)
+# Módulo: ami-amazon-linux-2023 (Amazon Linux 2023)
 # ------------------------------------------------
 module "latest_al2023_x86_64_ami" {
   source = "../../modules/ami/ami-amazon-linux-2023"
