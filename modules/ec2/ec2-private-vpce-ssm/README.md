@@ -42,11 +42,9 @@
 ├── main.tf (módulo root)
 │   │
 │   ├── módulo: ec2-private-ssm
-│   │   │
 │   │   └── Crea la EC2 con SSM
 │   │
 │   ├── módulo: vpce-ssm
-│   │   │
 │   │   └── Crea los VPC Endpoints
 ```
 
@@ -54,6 +52,7 @@
 
 ## 🔧 Argumentos del módulo
 - Lista de argumentos para el sub-módulo: **`ec2-private-ssm`**
+
 | Nombre                       | Tipo         | Valor Default  |
 |------------------------------|--------------|----------------|          
 | `subnet_id`                  | string       | -              |             
@@ -62,6 +61,7 @@
 
 
 - Lista de argumentos para el sub-módulo: **`vpc-endpoints-ssm`**
+
 | Nombre                       | Tipo         | Valor Default  |
 |------------------------------|--------------|----------------|   
 | `subnet_ids`                 | list(string) | -              |             
@@ -69,11 +69,14 @@
 | `include_logs_endpoint`      | bool         |false           |
 | `include_kms_endpoint`       | bool         |false           |
 
+
 - Lista de argumentos comunes entre módulos
+
 | Nombre                       | Tipo         | Valor Default  |
 |------------------------------|--------------|----------------|
 | `vpc_id`                     | string       | -              |   
 | `tags`                       | map(string)  |{ }             |
+
 
 - Uso de Security Group Referencing
     - Restricción de acceso mediante **Security Group referencing**, permitiendo únicamente instancias asociadas al SG `sg-id-ec2`  comunicarse con los endpoints de SSM vía**SG-to-SG rules**.
