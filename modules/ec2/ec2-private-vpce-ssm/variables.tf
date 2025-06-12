@@ -1,18 +1,13 @@
 # -----------------------------------------------------
 # Atributos requeridos por el módulo: ec2-private-ssm
 # -----------------------------------------------------
-variable "subnet_id" {
-  description = "Subnet ID where to place the EC2"
-  type        = string
-}
-
 variable "instance_type" {
   description = "Type of EC2"
   type        = string
   default     = "t3.micro"
 }
 
-variable "ami" {
+variable "ami_id" {
   description = "Amazon Machine Image (AMI)"
   type        = string
 }
@@ -45,11 +40,6 @@ variable "include_logs_endpoint" {
   description = "Whether to include the KMS endpoint"
   type        = bool
   default     = false
-}
-
-variable "sg-id-ec2" {
-  description = "ID de Security Group asignado a la EC2 SSM"
-  type        = string
 }
 
 #---------------------------------------------------------------

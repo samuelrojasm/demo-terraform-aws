@@ -54,10 +54,9 @@
 - Lista de argumentos para el sub-módulo: **`ec2-private-ssm`**
 
 | Nombre                       | Tipo         | Valor Default  |
-|------------------------------|--------------|----------------|          
-| `subnet_id`                  | string       | -              |             
+|------------------------------|--------------|----------------|              
 | `instance_type`              | string       |t3.micro        |
-| `ami`                        | string       |-               |
+| `ami_id`                     | string       |-               |
 
 
 - Lista de argumentos para el sub-módulo: **`vpc-endpoints-ssm`**
@@ -93,11 +92,11 @@
 module "lab_ssm_ec2_private" {
     source = "module/ec2/ec2-private-vpce-ssm"
 
-    vpc_id               = module.vpc.id
-    private_subnet_ids   = module.vpc.private_subnets
-    instance_name        = "ssm-admin"
-    instance_type        = "t3.micro"
-    ssm_instance_profile = module.ssm_role.iam_instance_profile_name
+    region        = var.aws_region
+    vpc_id        = module.vpc.id
+    subnet_ids    = module.vpc.private_subnets
+    ami           = module.latest_al2023_x86_64_ami.ami_id
+    instance_type = "t3.micro"
     tags = {
         Project = "eks-lab"
         Env     = "dev"

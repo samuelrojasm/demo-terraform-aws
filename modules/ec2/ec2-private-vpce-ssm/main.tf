@@ -9,8 +9,8 @@ module "ec2_ssm" {
   source = "../ec2-private-ssm"
 
   vpc_id        = var.vpc_id
-  subnet_id     = var.subnet_id
-  ami           = var.ami
+  subnet_id     = var.subnet_ids[0]
+  ami_id        = var.ami_id
   instance_type = var.instance_type
   tags          = var.tags
 }
