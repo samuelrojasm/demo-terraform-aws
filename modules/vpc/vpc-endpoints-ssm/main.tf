@@ -1,4 +1,6 @@
+#--------------------------------------------------
 #Variables locales
+#--------------------------------------------------
 locals {
   base_services = [
     "ssm",
@@ -14,6 +16,9 @@ locals {
   all_services = concat(local.base_services, local.optional_services)
 }
 
+#--------------------------------------------------
+# Creación del los VPC endpoints
+#--------------------------------------------------
 resource "aws_vpc_endpoint" "this" {
   for_each = toset(local.all_services)
 
@@ -30,7 +35,9 @@ resource "aws_vpc_endpoint" "this" {
   })
 }
 
+#--------------------------------------------------
 # Security Group para los Endpoints
+#--------------------------------------------------
 resource "aws_security_group" "this" {
   name        = "sg-ssm-endpoints"
   vpc_id      = var.vpc_id
