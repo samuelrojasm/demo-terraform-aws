@@ -5,13 +5,13 @@
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
 ## 🎯 Objetivo (Target)
-- El objetivo principal es proporcionar una forma **segura, reproducible y automatizada** de desplegar EC2 privada, que facilite la administración de recursos en redes privadas (como EKS sin endpoint público), sin necesidad de:
+-  Este módulo de Terraform crea un entorno **EC2** configurado en una subnet privada, idealmente en la misma red que un clúster de EKS privado u otros recursos internos.
+- Incluir automáticamente los VPC endpoints necesarios.
+- Este entorno sirve como bastión seguro o punto de entrada para administrar recursos en redes privadas (como EKS privados), sin necesidad de abrir puertos ni usar claves SSH.
+- Proporcionar una forma **segura, reproducible y automatizada** de desplegar EC2 privada, que permita crear las bases para la administración de recursos en redes privadas (como EKS sin endpoint público), sin necesidad de:
     - Crear o gestionar llaves SSH
     - Exponer puertos en la red
     - Lanzar EC2 manualmente
-- Este módulo de Terraform crea un entorno **EC2** configurado en una subnet privada, idealmente en la misma red que un clúster de EKS privado u otros recursos internos.
-- Incluir automáticamente los VPC endpoints necesarios.
-- Este entorno sirve como bastión seguro o punto de entrada para administrar recursos en redes privadas (como EKS privados), sin necesidad de abrir puertos ni usar claves SSH.
 
 ---
 
@@ -70,6 +70,7 @@
     ```
 ---
 
+## 📚 Referencias
 - [Resource: aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)
 - [Resource: aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
 - [Resource: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
