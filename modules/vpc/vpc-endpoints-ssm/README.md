@@ -5,7 +5,12 @@
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
 ## 🎯 Objetivo (Target)
+- Este módulo de Terraform tiene como objetivo provisionar los **VPC Endpoints privados** necesarios para habilitar el acceso a instancias EC2 mediante AWS Systems Manager (SSM) en redes privadas, sin requerir conexión a Internet ni NAT Gateway.
 - Permitir que una EC2 100% privada (sin NAT, sin IGW) sin acceso a Internet pueda usar AWS SSM mediante Interface Endpoints (basados en AWS PrivateLink).
+
+---
+
+## ✔️ Requisitos
 - Requisitos para acceder a EC2 privada con SSM sin NAT 
     - AWS SSM requiere los siguientes VPC Interface Endpoints:
 
