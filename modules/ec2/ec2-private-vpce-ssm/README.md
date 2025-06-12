@@ -7,8 +7,21 @@
 - Agrupar EC2 + VPC Endpoint en un solo módulo
 - Provisionar una instancia EC2 privada junto con los VPC Endpoints necesarios para acceder a la EC2 mediante AWS Systems Manager (SSM), sin requerir acceso público ni llaves SSH.
 - Está diseñado para entornos seguros donde se requiere administración remota de instancias privadas a través de SSM, utilizando endpoints de tipo Interface para los servicios de SSM, EC2 Messages y otros relacionados.
+- Proporcionar una forma **segura, reproducible y automatizada** de desplegar EC2 privada, que permita facilitar la administración de recursos en redes privadas (como EKS sin endpoint público), sin necesidad de:
+    - Crear o gestionar llaves SSH
+    - Exponer puertos en la red
+    - Lanzar EC2 manualmente
+- Este entorno sirve como bastión seguro o punto de entrada para administrar recursos en redes privadas (como EKS privados), sin necesidad de abrir puertos ni usar claves SSH.
 
---
+---
+
+## 🚀 Ventajas:
+- Acceso seguro al clúster EKS privado, vía túneles SSM
+- Automatización con Terraform, reutilizando el módulo en diferentes proyectos o laboratorios
+- Estandarización del entorno de desarrollo, con control sobre tags y tipo de instancia
+- Integración con otros módulos de red, EKS, IAM o bastiones
+
+---
 
 ## 🧱 Recursos creados
 - Una instancia EC2 privada:
@@ -24,7 +37,7 @@
 
 ---
 
-## Módulos usados
+## ⚙️ Módulos usados
 ```bash
 ├── main.tf (módulo root)
 │   │
