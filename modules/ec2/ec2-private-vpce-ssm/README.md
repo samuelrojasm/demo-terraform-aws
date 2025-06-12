@@ -42,9 +42,11 @@
 ├── main.tf (módulo root)
 │   │
 │   ├── módulo: ec2-private-ssm
+│   │   │
 │   │   └── Crea la EC2 con SSM
 │   │
 │   ├── módulo: vpce-ssm
+│   │   │
 │   │   └── Crea los VPC Endpoints
 ```
 
