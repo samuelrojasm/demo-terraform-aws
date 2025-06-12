@@ -11,7 +11,7 @@
 
 ---
 
-## 🧱 Recursos creados
+## ⚙️ Recursos creados
 - Una EC2
 - Rol SSM asignado a la EC2
     - Acceso a la EC2 solo vía SSM (sin NAT, sin IGW)
