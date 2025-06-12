@@ -3,24 +3,6 @@
 # -----------------------------------------------------
 # Atributos requeridos por el módulo: ec2-private-ssm
 # -----------------------------------------------------
-variable "project" {
-  description = "Nombre del proyecto"
-  type        = string
-  default     = "demo"
-}
-
-variable "environment" {
-  description = "Entorno (demo, lab, test, dev, prod)"
-  type        = string
-  default     = "lab"
-}
-
-variable "purpose" {
-  description = "Propósito de uso de los recursos"
-  type        = string
-  default     = "SSM-managed private EC2"
-}
-
 variable "vpc_id" {
   description = "ID de la VPC"
   type        = string
@@ -37,7 +19,7 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "ami" {
+variable "ami_id" {
   description = "Amazon Machine Image (AMI)"
   type        = string
 }

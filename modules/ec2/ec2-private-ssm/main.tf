@@ -2,7 +2,9 @@
 # AWS EC2 SSM                 #
 ###############################
 
+#---------------------------------------
 # Role para EC2 con acceso a SSM
+#---------------------------------------
 resource "aws_iam_role" "this" {
   name               = "ec2-ssm-role"
   assume_role_policy = templatefile("${path.module}/assume-role-policy.tftpl")
@@ -18,20 +20,24 @@ resource "aws_iam_instance_profile" "this" {
   role = aws_iam_role.this.name
 }
 
+#---------------------------------------
 # Security Group para EC2
+#---------------------------------------
 resource "aws_security_group" "this" {
   name        = "sg-ec2-private"
   vpc_id      = var.vpc_id
   description = "Allow EC2 egress to VPCE on HTTPS"
 
   tags = merge(var.tags, {
-    Name = "sg-ec2-private-sg"
+    Name = "sg-ec2-private"
   })
 }
 
+#---------------------------------------
 # EC2 privada
+#---------------------------------------
 resource "aws_instance" "this" {
-  ami                         = var.ami
+  ami                         = var.ami_id
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
   vpc_security_group_ids      = [aws_security_group.this.id]
