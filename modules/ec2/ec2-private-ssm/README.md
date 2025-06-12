@@ -6,30 +6,21 @@
 
 ## 🎯 Objetivo (Target)
 -  Este módulo de Terraform crea un entorno **EC2** configurado en una subnet privada, idealmente en la misma red que un clúster de EKS privado u otros recursos internos.
-- Incluir automáticamente los VPC endpoints necesarios.
-- Este entorno sirve como bastión seguro o punto de entrada para administrar recursos en redes privadas (como EKS privados), sin necesidad de abrir puertos ni usar claves SSH.
-- Proporcionar una forma **segura, reproducible y automatizada** de desplegar EC2 privada, que permita crear las bases para la administración de recursos en redes privadas (como EKS sin endpoint público), sin necesidad de:
-    - Crear o gestionar llaves SSH
-    - Exponer puertos en la red
-    - Lanzar EC2 manualmente
-
----
-
-## 🧪 Ventajas:
-- Acceso seguro al clúster EKS privado, vía túneles SSM
-- Automatización con Terraform, reutilizando el módulo en diferentes proyectos o laboratorios
-- Estandarización del entorno de desarrollo, con control sobre tags y tipo de instancia
-- Integración con otros módulos de red, EKS, IAM o bastiones
+- Se utiliza por un módulo superior que tiene como objetivo crear la EC2 + VPC EndPoint, esto se diseña de esta manera con la finalidad de evitar referencias cruzadas al momento de asignar las reglas de los SGs de EC2 y VPC EndPoint
+- Deja lista la EC2 para incluir automáticamente los VPC endpoints necesarios.
 
 ---
 
 ## 🧱 Recursos creados
-- Una EC2 con rol SSM
+- Una EC2
+- Rol SSM asignado a la EC2
     - Acceso a la EC2 solo vía SSM (sin NAT, sin IGW)
+- Security Group asignado a la EC2
+    - Solo se crea no incluye reglas (no se adicionan para evitar referencias cruzadas al conectar con el VPC Endpoint)
 
 ---
 
-## 🧪 Requisitos
+## ✔️ Requisitos
 - La EC2 debe tener rol IAM con estas políticas:
     ```bash
     AmazonSSMManagedInstanceCore
@@ -68,6 +59,7 @@
         }
     }
     ```
+
 ---
 
 ## 📚 Referencias
@@ -75,5 +67,6 @@
 - [Resource: aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
 - [Resource: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
 - [Terraform templatefile Function](https://developer.hashicorp.com/terraform/language/functions/templatefile)
+
 
 ---
