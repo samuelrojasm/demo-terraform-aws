@@ -17,13 +17,13 @@ variable "subnet_ids" {
 }
 
 variable "include_kms_endpoint" {
-  description = "Whether to include the CloudWatch Logs endpoint"
+  description = "Whether to include the KMS endpoint"
   type        = bool
   default     = false
 }
 
 variable "include_logs_endpoint" {
-  description = "Whether to include the KMS endpoint"
+  description = "Whether to include the CloudWatch Logs endpoint"
   type        = bool
   default     = false
 }
