@@ -93,10 +93,11 @@ module "lab_ssm_ec2_private" {
     source = "module/ec2/ec2-private-vpce-ssm"
 
     region        = var.aws_region
-    vpc_id        = module.vpc.id
+    vpc_id        = module.vpc.vpc_id
     subnet_ids    = module.vpc.private_subnets
     ami           = module.latest_al2023_x86_64_ami.ami_id
     instance_type = "t3.micro"
+    
     tags = {
         Project = "eks-lab"
         Env     = "dev"
