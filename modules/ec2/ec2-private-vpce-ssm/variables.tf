@@ -25,11 +25,6 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "allowed_cidr_blocks" {
-  description = "CIDR blocks allowed to access the endpoints"
-  type        = list(string)
-}
-
 variable "include_kms_endpoint" {
   description = "Whether to include the CloudWatch Logs endpoint"
   type        = bool
