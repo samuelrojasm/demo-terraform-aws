@@ -50,7 +50,8 @@
 - Llamada al módulo
     ```hcl
     module "ssm_vpc_endpoints" {
-        source               = "./modules/ssm-vpc-endpoints"
+        source               = "./modules/vpc/vpc-endpoints-ssm"
+
         vpc_id               = "vpc-12345678"
         subnet_ids           = ["subnet-aaaa", "subnet-bbbb"]
         region               = "us-east-1"
