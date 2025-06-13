@@ -39,11 +39,11 @@ resource "aws_vpc_endpoint" "this" {
 # Security Group para los Endpoints
 #--------------------------------------------------
 resource "aws_security_group" "this" {
-  name        = "sg-ssm-endpoints"
+  name        = "ssm-endpoints-sg"
   vpc_id      = var.vpc_id
   description = "Allow HTTPS ingress for VPC endpoints"
 
   tags = merge(var.tags, {
-    Name = "sg-ssm-endpoints"
+    Name = "ssm-endpoints-sg"
   })
 }
