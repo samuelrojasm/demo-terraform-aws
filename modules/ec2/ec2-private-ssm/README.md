@@ -36,7 +36,7 @@
 | `vpc_id`                     | string       | -              |               
 | `subnet_id`                  | string       | -              |             
 | `instance_type`              | string       |t3.micro        |
-| `ami`                        | string       |-               |
+| `ami_id`                     | string       |-               |
 
 ---
 
@@ -47,11 +47,8 @@
         source               = "./modules/ec2/ec2-private-ssm"
 
         vpc_id               = "vpc-12345678"
-        subnet_ids           = ["subnet-aaaa", "subnet-bbbb"]
-        region               = "us-east-1"
-        allowed_cidr_blocks  = ["10.0.0.0/16"]
-        include_logs_endpoint = true
-        include_kms_endpoint  = true
+        subnet_id           =  ["subnet-aaaa"]
+        ami_id = module.latest_al2023_x86_64_ami.ami_id
 
         tags = {
             Environment = "lab"
