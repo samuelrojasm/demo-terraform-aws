@@ -44,11 +44,11 @@
 - Llamada al módulo
     ```hcl
     module "ec2-private-ssm" {
-        source               = "./modules/ec2/ec2-private-ssm"
+        source    = "./modules/ec2/ec2-private-ssm"
 
-        vpc_id               = "vpc-12345678"
-        subnet_id           =  ["subnet-aaaa"]
-        ami_id = module.latest_al2023_x86_64_ami.ami_id
+        vpc_id    = "vpc-12345678"
+        subnet_id =  ["subnet-aaaa"]
+        ami_id    = module.latest_al2023_x86_64_ami.ami_id
 
         tags = {
             Environment = "lab"
