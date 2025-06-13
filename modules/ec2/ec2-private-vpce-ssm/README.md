@@ -32,8 +32,8 @@
     - ssm
     - ssmmessages
     - ec2messages
-- Un Security Group configurado adecuadamente para permitir el tráfico entre la EC2 y los VPC Endpoints:
-    - Asociar SGs entre ellos con **rules** del submódulo oficial
+- Reglas de Security Group para permitir el tráfico entre la EC2 y los VPC Endpoints:
+    - Asociar SGs entre ellos usando el módulo oficial Security Group
 
 ---
 
