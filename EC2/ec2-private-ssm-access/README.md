@@ -29,8 +29,9 @@
 │   │   │   └── Crea la EC2 con SSM
 │   │   ├── módulo: vpce-ssm
 │   │   │   └── Crea los VPC Endpoints
+│   │   ├── módulo: Security group
+│   │   │   └── Crea las reglas de SGs
 │   ├── módulo: VPC
-│   └── módulo: Security group rules
 │   └── módulo: ami-amazon-linux-2023
 ```
 
