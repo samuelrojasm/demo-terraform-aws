@@ -7,5 +7,5 @@ output "sg_rules_ec2_egress_rule_description" {
 }
 
 output "aws_instance_info" {
-  value = module.ec2_ssm.aws_instance.this
+  value = module.ec2_ssm.aws_instance_info
 }
