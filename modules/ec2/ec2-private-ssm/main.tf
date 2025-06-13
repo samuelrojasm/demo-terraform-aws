@@ -24,12 +24,12 @@ resource "aws_iam_instance_profile" "this" {
 # Security Group para EC2
 #---------------------------------------
 resource "aws_security_group" "this" {
-  name        = "sg-ec2-private"
+  name        = "ec2-private-sg"
   vpc_id      = var.vpc_id
   description = "Allow EC2 egress to VPCE on HTTPS"
 
   tags = merge(var.tags, {
-    Name = "sg-ec2-private"
+    Name = "ec2-private-sg"
   })
 }
 
