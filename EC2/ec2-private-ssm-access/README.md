@@ -24,14 +24,14 @@
 ## 🧩 Módulos usados
 ```bash
 ├── main.tf (módulo root)
-│   │
 │   ├── módulo: ec2-private-vpce-ssm
-│   │  │ 
-│   │  ├─ módulo: ec2-private-ssm
-│   │  │    └── Crea la EC2 con SSM
-│   │  │
-│   │  ├── módulo: vpce-ssm
-│   │  │    └── Crea los VPC Endpoints
+│   │   ├── módulo: ec2-private-ssm
+│   │   │   └── Crea la EC2 con SSM
+│   │   ├── módulo: vpce-ssm
+│   │   │   └── Crea los VPC Endpoints
+│   ├── módulo: VPC
+│   └── módulo: Security group rules
+│   └── módulo: ami-amazon-linux-2023
 ```
 
 ---

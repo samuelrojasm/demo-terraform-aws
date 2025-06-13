@@ -43,7 +43,7 @@ module "ec2_ssm" {
 
   region        = var.aws_region
   vpc_id        = module.vpc.vpc_id
-  subnet_ids    = var.vpc.private_subnets # List of subnet IDs where to place the endpoints
+  subnet_ids    = module.vpc.private_subnets # List of subnet IDs where to place the endpoints
   ami_id        = module.latest_al2023_x86_64_ami.ami_id
   instance_type = var.instance_type
   tags          = local.tags
