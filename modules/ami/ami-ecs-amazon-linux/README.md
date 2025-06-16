@@ -55,6 +55,20 @@ output "ecs_al2023_arm64_ssm_path" {
 
 ---
 
+## ⚙️ Probar módulo local
+- Desde el directorio raíz del proyecto Terraform
+    ```bash
+    terraform plan -var="arm64"
+    terraform plan -var="neuron"
+    terraform plan -var="gpu"
+    ```
+- Usando archivo .tfvars
+    ```bash
+    terraform plan -var-file="test.tfvars"
+    ```
+
+---
+
 ## 📌 Llamada a parámetros públicos de AMI en Parameter Store
 ### 1.- Primer paso investigar la estructura de las jerarquía de los Parámtros
 #### Ejempo ECS - AMIs optimizadas - Amazon Linux - x86_64
