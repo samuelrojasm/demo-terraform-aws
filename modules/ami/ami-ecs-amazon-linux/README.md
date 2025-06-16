@@ -14,9 +14,9 @@
 
 ## 🔧 Variables del módulo
 
-| Nombre                | Tipo         | Valor Default         |Valores posibles         |
-|-----------------------|--------------|-----------------------|-------------------------|
-| `architecture`        | string       | x86_64                | x86_64 arm64 neuron gpu |
+| Nombre                | Tipo         | Valor Default         |Valores posibles                    |
+|-----------------------|--------------|-----------------------|------------------------------------|
+| `architecture`        | string       | x86_64                | 'x86_64', 'arm64', 'neuron', 'gpu' |
 
 ---
 
