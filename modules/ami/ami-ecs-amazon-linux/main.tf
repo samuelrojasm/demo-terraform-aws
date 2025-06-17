@@ -1,10 +1,9 @@
 # Se implementa la lógica para construir el nombre del parámetro y recuperar el ID de la AMI.
-
 locals {
   ami_parameter_name = (
     var.architecture == "x86_64"
     ? "/aws/service/ecs/optimized-ami/amazon-linux-2023/recommended/image_id"
-    : "/aws/service/eks/optimized-ami/${var.architecture}/recommended/image_id"
+    : "/aws/service/ecs/optimized-ami/amazon-linux-2023/${var.architecture}/recommended/image_id"
   )
 }
 

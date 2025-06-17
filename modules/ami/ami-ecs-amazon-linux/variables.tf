@@ -7,3 +7,9 @@ variable "architecture" {
     error_message = "La arquitectura debe ser 'x86_64' 'arm64' 'neuron' o 'gpu'"
   }
 }
+
+variable "aws_region" {
+    type = string
+    default = "us-east-1"
+  
+}

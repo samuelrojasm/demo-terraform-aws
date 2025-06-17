@@ -58,9 +58,9 @@ output "ecs_al2023_arm64_ssm_path" {
 ## ⚙️ Probar módulo local
 - Desde el directorio raíz del proyecto Terraform
     ```bash
-    terraform plan -var="arm64"
-    terraform plan -var="neuron"
-    terraform plan -var="gpu"
+    terraform plan -var="architecture=arm64"
+    terraform plan -var="architecture=neuron"
+    terraform plan -var="architecture=gpu"
     ```
 - Usando archivo .tfvars
     ```bash
