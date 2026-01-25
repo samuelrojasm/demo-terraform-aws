@@ -10,9 +10,16 @@ locals {
   prefix = "${var.purpose}-${var.service}"
 }
 
+# Bucket S3 para el Backend
 resource "aws_s3_bucket" "bucket_tf_state" {
-  bucket        = "${local.prefix}-${var.prefix_bucket_name}-01"
-  force_destroy = true
+  bucket        = "${local.prefix}-${var.prefix_bucket_name}-001"
+
+  # Protección contra eliminación accidental desde Terraform
+  lifecycle {
+    prevent_destroy = true
+  }
+
+  # force_destroy = true
 
   tags = {
     Name        = "Terraform State Bucket"
@@ -20,7 +27,7 @@ resource "aws_s3_bucket" "bucket_tf_state" {
   }
 }
 
-# Provides a S3 bucket encryption
+# Configuración de Cifrado (SSE-S3 / AES256)
 resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_encryption" {
   bucket = aws_s3_bucket.bucket_tf_state.id
 
@@ -31,7 +38,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_encrypti
   }
 }
 
-# Provides a resource for controlling versioning on an S3 bucket
+# Configuración de Versionado en S3 bucket
 resource "aws_s3_bucket_versioning" "tf_state_versioning" {
   bucket = aws_s3_bucket.bucket_tf_state.id
 
@@ -40,7 +47,8 @@ resource "aws_s3_bucket_versioning" "tf_state_versioning" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "tf_state_block_public" {
+# Bloqueo de Acceso Público (Seguridad Perimetral)
+resource "aws_s3_bucket_public_access_block" "tf_state_public_block" {
   bucket = aws_s3_bucket.bucket_tf_state.id
 
   block_public_acls       = true
@@ -57,3 +65,47 @@ resource "aws_s3_bucket_ownership_controls" "tf_state_ownership" {
     object_ownership = "BucketOwnerEnforced"
   }
 }
+
+# Política de Bucket (Seguridad de Transporte-Tránsito)
+# Forzar el uso de HTTPS (TLS)
+# Garantiza que los datos viajen siempre dentro de un túnel encriptado (TLS/SSL)
+resource "aws_s3_bucket_policy" "terraform_state_policy" {
+  bucket = aws_s3_bucket.terraform_state.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement =
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
+      }
+    ]
+  })
+}
+
+# Regla de Ciclo de Vida para limpiar bloqueos antiguos
+resource "aws_s3_bucket_lifecycle_configuration" "terraform_state_lifecycle" {
+  bucket = aws_s3_bucket.terraform_state.id
+
+  rule {
+    id     = "CleanUpLockFiles"
+    status = "Enabled"
+
+    filter {
+      prefix = "" # Aplica a todo
+    }
+
+    # Limpiar versiones antiguas de archivos (útil para los delete markers de los locks)
+    noncurrent_version_expiration {
+      noncurrent_days = 7
+    }
+    
+    # Abortar cargas multiparte incompletas para ahorrar costos
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 1
+    }
+  }
+}
+
+# ---
