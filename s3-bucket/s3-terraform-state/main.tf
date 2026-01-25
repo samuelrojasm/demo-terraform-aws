@@ -71,16 +71,26 @@ resource "aws_s3_bucket_ownership_controls" "tf_state_ownership" {
 # Garantiza que los datos viajen siempre dentro de un túnel encriptado (TLS/SSL)
 resource "aws_s3_bucket_policy" "terraform_state_policy" {
   bucket = aws_s3_bucket.terraform_state.id
+
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement =
+    Statement = [                 // <--- 1. Inicio de lista
+      {                           // <--- 2. Inicio de objeto
+        Sid       = "EnforceHTTPS"
+        Effect    = "Deny"        // Necesario para que la condición tenga sentido
+        Principal = "*"
+        Action    = "s3:*"
+        Resource  = [
+          aws_s3_bucket.bucket_tf_state.arn,
+          "${aws_s3_bucket.bucket_tf_state.arn}/*"
+        ]
         Condition = {
           Bool = {
             "aws:SecureTransport" = "false"
           }
         }
-      }
-    ]
+      }                           // Cierra el objeto
+    ]                             // Cierra la lista
   })
 }
 
