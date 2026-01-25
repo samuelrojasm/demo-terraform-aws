@@ -12,7 +12,7 @@ locals {
 
 # Bucket S3 para el Backend
 resource "aws_s3_bucket" "bucket_tf_state" {
-  bucket        = "${local.prefix}-${var.prefix_bucket_name}-001"
+  bucket = "${local.prefix}-${var.prefix_bucket_name}-001"
 
   # Protección contra eliminación accidental desde Terraform
   lifecycle {
@@ -70,17 +70,17 @@ resource "aws_s3_bucket_ownership_controls" "tf_state_ownership" {
 # Forzar el uso de HTTPS (TLS)
 # Garantiza que los datos viajen siempre dentro de un túnel encriptado (TLS/SSL)
 resource "aws_s3_bucket_policy" "terraform_state_policy" {
-  bucket = aws_s3_bucket.terraform_state.id
+  bucket = aws_s3_bucket.bucket_tf_state.id
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [                 // <--- 1. Inicio de lista
-      {                           // <--- 2. Inicio de objeto
+    Statement = [ // <--- 1. Inicio de lista
+      {           // <--- 2. Inicio de objeto
         Sid       = "EnforceHTTPS"
-        Effect    = "Deny"        // Necesario para que la condición tenga sentido
+        Effect    = "Deny" // Necesario para que la condición tenga sentido
         Principal = "*"
         Action    = "s3:*"
-        Resource  = [
+        Resource = [
           aws_s3_bucket.bucket_tf_state.arn,
           "${aws_s3_bucket.bucket_tf_state.arn}/*"
         ]
@@ -89,14 +89,14 @@ resource "aws_s3_bucket_policy" "terraform_state_policy" {
             "aws:SecureTransport" = "false"
           }
         }
-      }                           // Cierra el objeto
-    ]                             // Cierra la lista
+      } // Cierra el objeto
+    ]   // Cierra la lista
   })
 }
 
 # Regla de Ciclo de Vida para limpiar bloqueos antiguos
 resource "aws_s3_bucket_lifecycle_configuration" "terraform_state_lifecycle" {
-  bucket = aws_s3_bucket.terraform_state.id
+  bucket = aws_s3_bucket.bucket_tf_state.id
 
   rule {
     id     = "CleanUpLockFiles"
@@ -110,7 +110,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "terraform_state_lifecycle" {
     noncurrent_version_expiration {
       noncurrent_days = 7
     }
-    
+
     # Abortar cargas multiparte incompletas para ahorrar costos
     abort_incomplete_multipart_upload {
       days_after_initiation = 1
