@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "bucket_tf_state" {
 
   # Protección contra eliminación accidental desde Terraform
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
   # force_destroy = true
